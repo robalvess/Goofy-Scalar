@@ -1,0 +1,70 @@
+M$ModelName = "Goofy Scalars";
+
+M$Information = {Authors -> "J.R. Alves",
+                 Institutions -> "UFRN"
+                 };
+
+(*Parameters*)
+
+M$Parameters = {
+    m1 == {ParameterType -> External, Tex -> m1, Description -> "Mass b4 GSB"},
+    \[Lambda]P == {ParameterType -> External, Tex -> Subscript[\[Lambda],P], Description -> "Portal between singlet scalar and Higgs"},
+    \[Lambda]S == {ParameterType -> External, Tex -> Subscript[\[Lambda],S], Description -> "Self interaction of the singlet scalar"},
+    \[Lambda]1 == {ParameterType -> External, Tex -> Subscript[\[Lambda],1], Description -> "Quartic Coupling of the Scalar Singlet"},
+    \[Lambda]h == {ParameterType -> External, Tex -> Subscript[\[Lambda],h], Description -> "Quartic Coupling of the Higgs"},
+    \[Theta] == {ParameterType -> External, Value -> 0.1, Description -> "Mixing angle"},
+    vH == {ParameterType -> Internal, Value -> Sqrt[(\[Lambda]P * vS)/2*\[Lambda]h], Description -> "New Higgs VeV"},
+    vS == {ParameterType -> Internal, Value -> Sqrt[(m1^2)/(\[Lambda]S + 2\[Lambda]1)], Description -> "Singlet Scalar VeV"}
+    (*mS == {ParameterType -> Internal, Value -> Sqrt[1/2 vS (vS (4 \[Lambda]1 - \[Lambda]P + 2 \[Lambda]S) + 
+        Sqrt[4 vH^2 \[Lambda]P^2 + vS^2 (4 \[Lambda]1 + \[Lambda]P + 2 \[Lambda]S)^2])],
+        Description -> "Mass of the Broken Scalar upon diagonalization"},
+    mI == {ParameterType -> Internal, Value ->1/2(2 m1^2 + vH^2 \[Lambda]P - 2 vS^2 (6 \[Lambda]1 - \[Lambda]S)),
+        Description -> "Mass of the Imaginary part of the Scalar"}*)
+}
+
+
+MR$Definitions = {
+    vev -> vH
+    lam -> \[Lambda]h
+}
+
+(*Particles in the Model*)
+
+M$ClassesDescription = {
+    S[9000001] == {
+        ClassName -> sR,
+        SelfConjugate -> True,
+        PDG -> 9000001,
+        Mass -> {mS,1000},
+        Width -> 0,
+        Spin -> 0,
+        Charge -> 0,
+        Description -> "Scalar mass eigenstate 1"
+    },
+    S[9000002] == {
+        ClassName -> sI,
+        SelfConjugate -> True,
+        PDG -> 9000002,
+        Mass -> {mI,50},
+        Width -> 0,
+        Spin -> 0,
+        Charge -> 0,
+        Description -> "Scalar mass eigenstate 2"
+    }
+}
+
+defs = {
+    h -> Cos[\[Theta]] H + Sin[\[Theta]] sR,
+    s -> -Sin[\[Theta]] H + Cos[\[Theta]] sR
+}
+
+LFree = 1/2 del[sR,mu]^2 - 1/2 mS^2 sR^2 + 1/2 del[sI,mu]^2 - 1/2 mI^2 sI^2;
+
+LInt = (h^4 \[Lambda]h)/4 + h^3 vH \[Lambda]h + sI^2 ((h^2 \[Lambda]P)/4 + (h vH \[Lambda]P)/2) + 1/4 s^4 (2 \[Lambda]1 + \[Lambda]S) + 1/4 sI^4 (2 \[Lambda]1 + \[Lambda]S) + 
+ s^3 vS (2 \[Lambda]1 + \[Lambda]S) + 
+ s^2 ((h^2 \[Lambda]P)/4 + (h vH \[Lambda]P)/2 - 
+    1/2 sI^2 (6 \[Lambda]1 - \[Lambda]S)) + 
+ s (1/2 h^2 vS \[Lambda]P - sI^2 vS (6 \[Lambda]1 - \[Lambda]S));
+ 
+LModel = (LFree + LInt) /. defs;
+Lag = Expand[LModel];
