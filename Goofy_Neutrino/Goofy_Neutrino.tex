@@ -1,0 +1,1332 @@
+\documentclass[12pt]{article}
+\pagestyle{empty}
+
+\usepackage[top=2cm,bottom=2cm,left=2.5cm,right=2cm,nohead,nofoot]{geometry}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{bbm}
+\usepackage{booktabs}
+\usepackage[]{hyperref}
+\usepackage{autobreak}
+\setlength{\parindent}{0pt}
+
+\newcommand{\tr}{\mathrm{Tr}}
+\newcommand{\trans}{\mathrm{T}}
+
+\title{Goofy\_Neutrino}
+\author{PyR@TE 3.0}
+\date{27 October 2025, 19:08}
+
+\begin{document}
+    \maketitle
+    \tableofcontents
+    \clearpage
+
+\section{Model}
+
+\subsection{Gauge groups}
+
+\begin{table}[h]
+\renewcommand{\arraystretch}{1.3}
+\centering
+\begin{tabular}{c@{\hskip .66cm}c@{\hskip .66cm}c@{\hskip .5cm}c}
+\hline
+Name & Type & Abelian & Coupling constant \\ \hline
+U1Y & $U(1)$ & True & $g_{U1Y}$ \\
+SU2L & $SU(2)$ & False & $g_{SU2L}$ \\ \hline
+\end{tabular}
+\end{table}
+
+\subsection{Fermions}
+
+\begin{table}[h]
+\renewcommand{\arraystretch}{1.15}
+\centering
+\begin{tabular}{c@{\hskip .66cm}c@{\hskip .66cm}c}
+\hline
+Name & Generations & U1Y $\times$ SU2L\\ \hline \\ [-2ex]
+$L$ & 3 & ($- \frac{1}{2}$, $\mathbf{2}$) \\[.2cm]
+$N_R$ & 3 & ($0$, $\mathbf{1}$) \\[.2cm]
+$N_L$ & 3 & ($0$, $\mathbf{1}$) \\[.1cm] \hline
+\end{tabular}
+\end{table}
+
+\subsection{Scalars}
+
+\begin{table}[h]
+\renewcommand{\arraystretch}{1.15}
+\centering
+\begin{tabular}{c@{\hskip .66cm}c@{\hskip .66cm}ccc}
+\hline
+Name & Complex & Expression & Generations & U1Y $\times$ SU2L\\ \hline \\ [-2ex]
+$H$ & True & $\frac{1}{\sqrt{2}} \left(\Pi + i\, \Sigma\right)$ & 1 & ($+\frac{1}{2}$, $\mathbf{2}$) \\[.2cm]
+$S$ & True & $\frac{1}{\sqrt{2}} \left(sR + i\, sI\right)$ & 1 & ($0$, $\mathbf{1}$) \\[.1cm] \hline
+\end{tabular}
+\end{table}
+
+\section{Lagrangian}
+
+\subsection{Definitions}
+{\allowdisplaybreaks
+\begin{align*}
+\tilde{H}{}_{i} &= \epsilon_{i,j} H^{\dagger}_{j}\\
+\end{align*}
+}
+\subsection{Yukawa couplings}
+{\allowdisplaybreaks
+\begin{align*}
+\begin{autobreak}
+-\mathcal{L}_Y = 
+
++ Y_\nu{}_{f_1,f_2} \tilde{H}_{i} \overline{L}_{f_{1},i} {N_R}_{f_{2}}
+
++ \lambda_N{}_{f_1,f_2} {\overline{N_L}}_{f_{1}} S {N_R}_{f_{2}}
+
++ \lambda_R{}_{f_1,f_2} {N_R}_{f_{1}} S {N_R}_{f_{2}}
+
++ \lambda_L{}_{f_1,f_2} {N_L}_{f_{1}} S^{\dagger} {N_L}_{f_{2}}
+ + \text{h.c.}
+\end{autobreak}
+\end{align*}
+}\subsection{Quartic couplings}
+{\allowdisplaybreaks
+\begin{align*}
+\begin{autobreak}
+-\mathcal{L}_Q = 
+
++ \lambda_H H^{\dagger}_{i} H_{i} H^{\dagger}_{i_{1}} H_{i_{1}}
+
++ \frac{1}{2} \lambda_P S^{\dagger} S H^{\dagger}_{i} H_{i}
+
++ \frac{1}{4} \lambda_S \big(S^{\dagger} S\big)^{2}
+
++ \lambda_1 S S S S
+
++ \lambda_1^{*} S^{\dagger} S^{\dagger} S^{\dagger} S^{\dagger}
+\end{autobreak}
+\end{align*}
+}\subsection{Scalar mass couplings}
+{\allowdisplaybreaks
+\begin{align*}
+\begin{autobreak}
+-\mathcal{L}_{sm} = 
+
++ m_1 \big(\frac{1}{2} S^{2} 
++ \frac{1}{2} \big(S^{\dagger}\big)^{2}\big)
+\end{autobreak}
+\end{align*}
+}
+
+\section{Renormalization Group Equations}
+\subsection{Convention}
+\begin{equation*}
+\beta\left(X\right) \equiv \mu \frac{d X}{d \mu}\equiv\cdot \frac{1}{\left(4 \pi\right)^{2}}\beta^{(1)}(X)+\cdot \frac{1}{\left(4 \pi\right)^{4}}\beta^{(2)}(X)+\cdot \frac{1}{\left(4 \pi\right)^{6}}\beta^{(3)}(X)
+\end{equation*}
+
+
+\subsection{Gauge couplings}
+{\allowdisplaybreaks
+
+\begin{align*}
+\begin{autobreak}
+\beta^{(1)}(g_{U1Y}) =\frac{7}{6} g_{U1Y}^{3}
+\end{autobreak}
+\end{align*}
+\begin{align*}
+\begin{autobreak}
+\beta^{(2)}(g_{U1Y}) =
+
++ \frac{5}{4} g_{U1Y}^{5}
+
++ \frac{15}{4} g_{SU2L}^{2} g_{U1Y}^{3}
+
+-  \frac{1}{2} g_{U1Y}^{3} \tr\left(Y_\nu^{\dagger} Y_\nu \right)
+\end{autobreak}
+\end{align*}
+\begin{align*}
+\begin{autobreak}
+\beta^{(3)}(g_{U1Y}) =
+
+-  \frac{725}{576} g_{U1Y}^{7}
+
++ \frac{69}{32} g_{SU2L}^{2} g_{U1Y}^{5}
+
++ \frac{5597}{192} g_{SU2L}^{4} g_{U1Y}^{3}
+
++ \frac{3}{2} g_{U1Y}^{5} \lambda_H
+
++ \frac{3}{2} g_{SU2L}^{2} g_{U1Y}^{3} \lambda_H
+
+- 3 g_{U1Y}^{3} \lambda_H^{2}
+
+-  \frac{1}{16} g_{U1Y}^{3} \lambda_P^{2}
+
+-  \frac{65}{32} g_{U1Y}^{5} \tr\left(Y_\nu^{\dagger} Y_\nu \right)
+
+-  \frac{195}{32} g_{SU2L}^{2} g_{U1Y}^{3} \tr\left(Y_\nu^{\dagger} Y_\nu \right)
+
++ \frac{5}{8} g_{U1Y}^{3} \tr\left(Y_\nu^{\dagger} Y_\nu \right)^{2}
+
++ \frac{35}{16} g_{U1Y}^{3} \tr\left(Y_\nu^{\dagger} Y_\nu Y_\nu^{\dagger} Y_\nu \right)
+
++ \frac{7}{16} g_{U1Y}^{3} \tr\left(Y_\nu^{\dagger} Y_\nu \lambda_N^{\dagger} \lambda_N \right)
+
++ \frac{7}{4} g_{U1Y}^{3} \tr\left(Y_\nu^{\dagger} Y_\nu \lambda_R^{*} \lambda_R \right)
+\end{autobreak}
+\end{align*}
+\begin{align*}
+\begin{autobreak}
+\beta^{(1)}(g_{SU2L}) =- \frac{37}{6} g_{SU2L}^{3}
+\end{autobreak}
+\end{align*}
+\begin{align*}
+\begin{autobreak}
+\beta^{(2)}(g_{SU2L}) =
+
++ \frac{5}{4} g_{SU2L}^{3} g_{U1Y}^{2}
+
+-  \frac{371}{12} g_{SU2L}^{5}
+
+-  \frac{1}{2} g_{SU2L}^{3} \tr\left(Y_\nu^{\dagger} Y_\nu \right)
+\end{autobreak}
+\end{align*}
+\begin{align*}
+\begin{autobreak}
+\beta^{(3)}(g_{SU2L}) =
+
+-  \frac{725}{576} g_{SU2L}^{3} g_{U1Y}^{4}
+
++ \frac{265}{32} g_{SU2L}^{5} g_{U1Y}^{2}
+
+-  \frac{374275}{1728} g_{SU2L}^{7}
+
++ \frac{1}{2} g_{SU2L}^{3} g_{U1Y}^{2} \lambda_H
+
++ \frac{3}{2} g_{SU2L}^{5} \lambda_H
+
+- 3 g_{SU2L}^{3} \lambda_H^{2}
+
+-  \frac{1}{16} g_{SU2L}^{3} \lambda_P^{2}
+
+-  \frac{65}{32} g_{SU2L}^{3} g_{U1Y}^{2} \tr\left(Y_\nu^{\dagger} Y_\nu \right)
+
+-  \frac{243}{32} g_{SU2L}^{5} \tr\left(Y_\nu^{\dagger} Y_\nu \right)
+
++ \frac{5}{8} g_{SU2L}^{3} \tr\left(Y_\nu^{\dagger} Y_\nu \right)^{2}
+
++ \frac{19}{16} g_{SU2L}^{3} \tr\left(Y_\nu^{\dagger} Y_\nu Y_\nu^{\dagger} Y_\nu \right)
+
++ \frac{7}{16} g_{SU2L}^{3} \tr\left(Y_\nu^{\dagger} Y_\nu \lambda_N^{\dagger} \lambda_N \right)
+
++ \frac{7}{4} g_{SU2L}^{3} \tr\left(Y_\nu^{\dagger} Y_\nu \lambda_R^{*} \lambda_R \right)
+\end{autobreak}
+\end{align*}
+}
+
+\subsection{Yukawa couplings}
+{\allowdisplaybreaks
+
+\begin{align*}
+\begin{autobreak}
+\beta^{(1)}(Y_\nu) =
+
++ \frac{3}{2} Y_\nu Y_\nu^{\dagger} Y_\nu
+
++ \frac{1}{2} Y_\nu \lambda_N^{\dagger} \lambda_N
+
++ 2 Y_\nu \lambda_R^{*} \lambda_R
+
++ \tr\left(Y_\nu^{\dagger} Y_\nu \right) Y_\nu
+
+-  \frac{3}{4} g_{U1Y}^{2} Y_\nu
+
+-  \frac{9}{4} g_{SU2L}^{2} Y_\nu
+\end{autobreak}
+\end{align*}
+\begin{align*}
+\begin{autobreak}
+\beta^{(2)}(Y_\nu) =
+
++ \frac{3}{2} Y_\nu Y_\nu^{\dagger} Y_\nu Y_\nu^{\dagger} Y_\nu
+
+-  \frac{1}{8} Y_\nu \lambda_N^{\dagger} \lambda_N Y_\nu^{\dagger} Y_\nu
+
+-  \frac{1}{8} Y_\nu \lambda_N^{\dagger} \lambda_N \lambda_N^{\dagger} \lambda_N
+
+-  \frac{1}{2} Y_\nu \lambda_N^{\dagger} \lambda_N \lambda_R^{*} \lambda_R
+
+-  \frac{1}{2} Y_\nu \lambda_N^{\dagger} \lambda_L^{*} \lambda_N^{*} \lambda_R
+
+-  \frac{1}{2} Y_\nu \lambda_N^{\dagger} \lambda_L^{*} \lambda_L \lambda_N
+
++ 7 Y_\nu \lambda_R^{*} Y_\nu^{\trans} Y_\nu^{*} \lambda_R
+
+-  \frac{1}{2} Y_\nu \lambda_R^{*} \lambda_N^{\trans} \lambda_N^{*} \lambda_R
+
+-  \frac{1}{2} Y_\nu \lambda_R^{*} \lambda_N^{\trans} \lambda_L \lambda_N
+
+-  \frac{1}{2} Y_\nu \lambda_R^{*} \lambda_R Y_\nu^{\dagger} Y_\nu
+
+-  \frac{1}{2} Y_\nu \lambda_R^{*} \lambda_R \lambda_N^{\dagger} \lambda_N
+
+- 2 Y_\nu \lambda_R^{*} \lambda_R \lambda_R^{*} \lambda_R
+
+-  \frac{9}{4} \tr\left(Y_\nu^{\dagger} Y_\nu Y_\nu^{\dagger} Y_\nu \right) Y_\nu
+
+-  \frac{9}{4} \tr\left(Y_\nu^{\dagger} Y_\nu \right) Y_\nu Y_\nu^{\dagger} Y_\nu
+
+-  \frac{3}{4} \tr\left(Y_\nu^{\dagger} Y_\nu \lambda_N^{\dagger} \lambda_N \right) Y_\nu
+
+- 3 \tr\left(Y_\nu^{\dagger} Y_\nu \lambda_R^{*} \lambda_R \right) Y_\nu
+
+-  \frac{3}{4} \tr\left(\lambda_N^{\dagger} \lambda_N \right) Y_\nu \lambda_N^{\dagger} \lambda_N
+
+- 3 \tr\left(\lambda_N^{\dagger} \lambda_N \right) Y_\nu \lambda_R^{*} \lambda_R
+
+-  \frac{3}{2} \tr\left(\lambda_R^{*} \lambda_R \right) Y_\nu \lambda_N^{\dagger} \lambda_N
+
+- 6 \tr\left(\lambda_R^{*} \lambda_R \right) Y_\nu \lambda_R^{*} \lambda_R
+
+-  \frac{3}{2} \tr\left(\lambda_L^{*} \lambda_L \right) Y_\nu \lambda_N^{\dagger} \lambda_N
+
+- 6 \tr\left(\lambda_L^{*} \lambda_L \right) Y_\nu \lambda_R^{*} \lambda_R
+
+- 12 \lambda_H Y_\nu Y_\nu^{\dagger} Y_\nu
+
+-  \lambda_P Y_\nu \lambda_N^{\dagger} \lambda_N
+
+- 4 \lambda_P Y_\nu \lambda_R^{*} \lambda_R
+
++ 6 \lambda_H^{2} Y_\nu
+
++ \frac{1}{8} \lambda_P^{2} Y_\nu
+
++ \frac{93}{16} g_{U1Y}^{2} Y_\nu Y_\nu^{\dagger} Y_\nu
+
++ \frac{135}{16} g_{SU2L}^{2} Y_\nu Y_\nu^{\dagger} Y_\nu
+
++ \frac{5}{8} g_{U1Y}^{2} \tr\left(Y_\nu^{\dagger} Y_\nu \right) Y_\nu
+
++ \frac{15}{8} g_{SU2L}^{2} \tr\left(Y_\nu^{\dagger} Y_\nu \right) Y_\nu
+
++ \frac{1}{24} g_{U1Y}^{4} Y_\nu
+
+-  \frac{9}{4} g_{SU2L}^{2} g_{U1Y}^{2} Y_\nu
+
+- 8 g_{SU2L}^{4} Y_\nu
+\end{autobreak}
+\end{align*}
+\begin{align*}
+\begin{autobreak}
+\beta^{(1)}(\lambda_N) =
+
++ \lambda_N Y_\nu^{\dagger} Y_\nu
+
++ \lambda_N \lambda_N^{\dagger} \lambda_N
+
++ 4 \lambda_N \lambda_R^{*} \lambda_R
+
++ 4 \lambda_L^{*} \lambda_N^{*} \lambda_R
+
++ 4 \lambda_L^{*} \lambda_L \lambda_N
+
++ \tr\left(\lambda_N^{\dagger} \lambda_N \right) \lambda_N
+
++ 2 \tr\left(\lambda_R^{*} \lambda_R \right) \lambda_N
+
++ 2 \tr\left(\lambda_L^{*} \lambda_L \right) \lambda_N
+\end{autobreak}
+\end{align*}
+\begin{align*}
+\begin{autobreak}
+\beta^{(2)}(\lambda_N) =
+
+-  \frac{1}{4} \lambda_N Y_\nu^{\dagger} Y_\nu Y_\nu^{\dagger} Y_\nu
+
+-  \frac{1}{4} \lambda_N Y_\nu^{\dagger} Y_\nu \lambda_N^{\dagger} \lambda_N
+
+-  \lambda_N Y_\nu^{\dagger} Y_\nu \lambda_R^{*} \lambda_R
+
++ \frac{7}{4} \lambda_N \lambda_N^{\dagger} \lambda_N \lambda_N^{\dagger} \lambda_N
+
++ 7 \lambda_N \lambda_N^{\dagger} \lambda_N \lambda_R^{*} \lambda_R
+
++ 7 \lambda_N \lambda_N^{\dagger} \lambda_L^{*} \lambda_N^{*} \lambda_R
+
++ 7 \lambda_N \lambda_N^{\dagger} \lambda_L^{*} \lambda_L \lambda_N
+
+-  \lambda_N \lambda_R^{*} Y_\nu^{\trans} Y_\nu^{*} \lambda_R
+
++ 7 \lambda_N \lambda_R^{*} \lambda_N^{\trans} \lambda_N^{*} \lambda_R
+
++ 7 \lambda_N \lambda_R^{*} \lambda_N^{\trans} \lambda_L \lambda_N
+
++ 7 \lambda_N \lambda_R^{*} \lambda_R \lambda_N^{\dagger} \lambda_N
+
++ 28 \lambda_N \lambda_R^{*} \lambda_R \lambda_R^{*} \lambda_R
+
+-  \lambda_L^{*} \lambda_N^{*} Y_\nu^{\trans} Y_\nu^{*} \lambda_R
+
++ 7 \lambda_L^{*} \lambda_N^{*} \lambda_N^{\trans} \lambda_N^{*} \lambda_R
+
++ 7 \lambda_L^{*} \lambda_N^{*} \lambda_N^{\trans} \lambda_L \lambda_N
+
++ 7 \lambda_L^{*} \lambda_N^{*} \lambda_R \lambda_N^{\dagger} \lambda_N
+
++ 28 \lambda_L^{*} \lambda_N^{*} \lambda_R \lambda_R^{*} \lambda_R
+
++ 7 \lambda_L^{*} \lambda_L \lambda_N \lambda_N^{\dagger} \lambda_N
+
++ 28 \lambda_L^{*} \lambda_L \lambda_N \lambda_R^{*} \lambda_R
+
++ 28 \lambda_L^{*} \lambda_L \lambda_L^{*} \lambda_N^{*} \lambda_R
+
++ 28 \lambda_L^{*} \lambda_L \lambda_L^{*} \lambda_L \lambda_N
+
+-  \frac{3}{2} \tr\left(Y_\nu^{\dagger} Y_\nu \right) \lambda_N Y_\nu^{\dagger} Y_\nu
+
+-  \frac{3}{2} \tr\left(Y_\nu^{\dagger} Y_\nu \lambda_N^{\dagger} \lambda_N \right) \lambda_N
+
+- 6 \tr\left(Y_\nu^{\dagger} Y_\nu \lambda_R^{*} \lambda_R \right) \lambda_N
+
+-  \frac{3}{2} \tr\left(\lambda_N^{\dagger} \lambda_N \lambda_N^{\dagger} \lambda_N \right) \lambda_N
+
+-  \frac{3}{2} \tr\left(\lambda_N^{\dagger} \lambda_N \right) \lambda_N \lambda_N^{\dagger} \lambda_N
+
+- 6 \tr\left(\lambda_N^{\dagger} \lambda_N \right) \lambda_N \lambda_R^{*} \lambda_R
+
+- 12 \tr\left(\lambda_N^{\dagger} \lambda_N \lambda_R^{*} \lambda_R \right) \lambda_N
+
+- 6 \tr\left(\lambda_N^{\dagger} \lambda_N \right) \lambda_L^{*} \lambda_N^{*} \lambda_R
+
+- 6 \tr\left(\lambda_N^{\dagger} \lambda_N \right) \lambda_L^{*} \lambda_L \lambda_N
+
+- 6 \tr\left(\lambda_N^{\dagger} \lambda_L^{*} \lambda_N^{*} \lambda_R \right) \lambda_N
+
+- 12 \tr\left(\lambda_N^{\dagger} \lambda_L^{*} \lambda_L \lambda_N \right) \lambda_N
+
+- 6 \tr\left(\lambda_R^{*} \lambda_N^{\trans} \lambda_L \lambda_N \right) \lambda_N
+
+- 3 \tr\left(\lambda_R^{*} \lambda_R \right) \lambda_N \lambda_N^{\dagger} \lambda_N
+
+- 12 \tr\left(\lambda_R^{*} \lambda_R \right) \lambda_N \lambda_R^{*} \lambda_R
+
+- 12 \tr\left(\lambda_R^{*} \lambda_R \lambda_R^{*} \lambda_R \right) \lambda_N
+
+- 12 \tr\left(\lambda_R^{*} \lambda_R \right) \lambda_L^{*} \lambda_N^{*} \lambda_R
+
+- 12 \tr\left(\lambda_R^{*} \lambda_R \right) \lambda_L^{*} \lambda_L \lambda_N
+
+- 3 \tr\left(\lambda_L^{*} \lambda_L \right) \lambda_N \lambda_N^{\dagger} \lambda_N
+
+- 12 \tr\left(\lambda_L^{*} \lambda_L \right) \lambda_N \lambda_R^{*} \lambda_R
+
+- 12 \tr\left(\lambda_L^{*} \lambda_L \right) \lambda_L^{*} \lambda_N^{*} \lambda_R
+
+- 12 \tr\left(\lambda_L^{*} \lambda_L \lambda_L^{*} \lambda_L \right) \lambda_N
+
+- 12 \tr\left(\lambda_L^{*} \lambda_L \right) \lambda_L^{*} \lambda_L \lambda_N
+
+- 2 \lambda_P \lambda_N Y_\nu^{\dagger} Y_\nu
+
+- 2 \lambda_S \lambda_N \lambda_N^{\dagger} \lambda_N
+
+- 8 \lambda_S \lambda_N \lambda_R^{*} \lambda_R
+
+- 8 \lambda_S \lambda_L^{*} \lambda_N^{*} \lambda_R
+
+- 8 \lambda_S \lambda_L^{*} \lambda_L \lambda_N
+
++ \frac{1}{4} \lambda_P^{2} \lambda_N
+
++ \frac{1}{4} \lambda_S^{2} \lambda_N
+
++ 48 \lambda_1 \lambda_1^{*} \lambda_N
+
++ \frac{17}{8} g_{U1Y}^{2} \lambda_N Y_\nu^{\dagger} Y_\nu
+
++ \frac{51}{8} g_{SU2L}^{2} \lambda_N Y_\nu^{\dagger} Y_\nu
+\end{autobreak}
+\end{align*}
+\begin{align*}
+\begin{autobreak}
+\beta^{(1)}(\lambda_R) =
+
++ Y_\nu^{\trans} Y_\nu^{*} \lambda_R
+
++ \lambda_N^{\trans} \lambda_N^{*} \lambda_R
+
++ \lambda_N^{\trans} \lambda_L \lambda_N
+
++ \lambda_R Y_\nu^{\dagger} Y_\nu
+
++ \lambda_R \lambda_N^{\dagger} \lambda_N
+
++ 4 \lambda_R \lambda_R^{*} \lambda_R
+
++ \tr\left(\lambda_N^{\dagger} \lambda_N \right) \lambda_R
+
++ 2 \tr\left(\lambda_R^{*} \lambda_R \right) \lambda_R
+
++ 2 \tr\left(\lambda_L^{*} \lambda_L \right) \lambda_R
+\end{autobreak}
+\end{align*}
+\begin{align*}
+\begin{autobreak}
+\beta^{(2)}(\lambda_R) =
+
+-  \frac{1}{4} Y_\nu^{\trans} Y_\nu^{*} Y_\nu^{\trans} Y_\nu^{*} \lambda_R
+
++ 4 Y_\nu^{\trans} Y_\nu^{*} \lambda_R Y_\nu^{\dagger} Y_\nu
+
+-  \frac{1}{4} \lambda_N^{\trans} \lambda_N^{*} Y_\nu^{\trans} Y_\nu^{*} \lambda_R
+
++ \frac{7}{4} \lambda_N^{\trans} \lambda_N^{*} \lambda_N^{\trans} \lambda_N^{*} \lambda_R
+
++ \frac{7}{4} \lambda_N^{\trans} \lambda_N^{*} \lambda_N^{\trans} \lambda_L \lambda_N
+
++ \frac{7}{4} \lambda_N^{\trans} \lambda_N^{*} \lambda_R \lambda_N^{\dagger} \lambda_N
+
++ 7 \lambda_N^{\trans} \lambda_N^{*} \lambda_R \lambda_R^{*} \lambda_R
+
++ \frac{7}{4} \lambda_N^{\trans} \lambda_L \lambda_N \lambda_N^{\dagger} \lambda_N
+
++ 7 \lambda_N^{\trans} \lambda_L \lambda_N \lambda_R^{*} \lambda_R
+
++ 7 \lambda_N^{\trans} \lambda_L \lambda_L^{*} \lambda_N^{*} \lambda_R
+
++ 7 \lambda_N^{\trans} \lambda_L \lambda_L^{*} \lambda_L \lambda_N
+
+-  \frac{1}{4} \lambda_R Y_\nu^{\dagger} Y_\nu Y_\nu^{\dagger} Y_\nu
+
+-  \frac{1}{4} \lambda_R Y_\nu^{\dagger} Y_\nu \lambda_N^{\dagger} \lambda_N
+
+-  \lambda_R Y_\nu^{\dagger} Y_\nu \lambda_R^{*} \lambda_R
+
++ \frac{7}{4} \lambda_R \lambda_N^{\dagger} \lambda_N \lambda_N^{\dagger} \lambda_N
+
++ 7 \lambda_R \lambda_N^{\dagger} \lambda_N \lambda_R^{*} \lambda_R
+
++ 7 \lambda_R \lambda_N^{\dagger} \lambda_L^{*} \lambda_N^{*} \lambda_R
+
++ 7 \lambda_R \lambda_N^{\dagger} \lambda_L^{*} \lambda_L \lambda_N
+
+-  \lambda_R \lambda_R^{*} Y_\nu^{\trans} Y_\nu^{*} \lambda_R
+
++ 7 \lambda_R \lambda_R^{*} \lambda_N^{\trans} \lambda_N^{*} \lambda_R
+
++ 7 \lambda_R \lambda_R^{*} \lambda_N^{\trans} \lambda_L \lambda_N
+
++ 7 \lambda_R \lambda_R^{*} \lambda_R \lambda_N^{\dagger} \lambda_N
+
++ 28 \lambda_R \lambda_R^{*} \lambda_R \lambda_R^{*} \lambda_R
+
+-  \frac{3}{2} \tr\left(Y_\nu^{\dagger} Y_\nu \right) Y_\nu^{\trans} Y_\nu^{*} \lambda_R
+
+-  \frac{3}{2} \tr\left(Y_\nu^{\dagger} Y_\nu \lambda_N^{\dagger} \lambda_N \right) \lambda_R
+
+-  \frac{3}{2} \tr\left(Y_\nu^{\dagger} Y_\nu \right) \lambda_R Y_\nu^{\dagger} Y_\nu
+
+- 6 \tr\left(Y_\nu^{\dagger} Y_\nu \lambda_R^{*} \lambda_R \right) \lambda_R
+
+-  \frac{3}{2} \tr\left(\lambda_N^{\dagger} \lambda_N \lambda_N^{\dagger} \lambda_N \right) \lambda_R
+
+-  \frac{3}{2} \tr\left(\lambda_N^{\dagger} \lambda_N \right) \lambda_N^{\trans} \lambda_N^{*} \lambda_R
+
+-  \frac{3}{2} \tr\left(\lambda_N^{\dagger} \lambda_N \right) \lambda_N^{\trans} \lambda_L \lambda_N
+
+-  \frac{3}{2} \tr\left(\lambda_N^{\dagger} \lambda_N \right) \lambda_R \lambda_N^{\dagger} \lambda_N
+
+- 12 \tr\left(\lambda_N^{\dagger} \lambda_N \lambda_R^{*} \lambda_R \right) \lambda_R
+
+- 6 \tr\left(\lambda_N^{\dagger} \lambda_N \right) \lambda_R \lambda_R^{*} \lambda_R
+
+- 6 \tr\left(\lambda_N^{\dagger} \lambda_L^{*} \lambda_N^{*} \lambda_R \right) \lambda_R
+
+- 12 \tr\left(\lambda_N^{\dagger} \lambda_L^{*} \lambda_L \lambda_N \right) \lambda_R
+
+- 6 \tr\left(\lambda_R^{*} \lambda_N^{\trans} \lambda_L \lambda_N \right) \lambda_R
+
+- 3 \tr\left(\lambda_R^{*} \lambda_R \right) \lambda_N^{\trans} \lambda_N^{*} \lambda_R
+
+- 3 \tr\left(\lambda_R^{*} \lambda_R \right) \lambda_N^{\trans} \lambda_L \lambda_N
+
+- 3 \tr\left(\lambda_R^{*} \lambda_R \right) \lambda_R \lambda_N^{\dagger} \lambda_N
+
+- 12 \tr\left(\lambda_R^{*} \lambda_R \lambda_R^{*} \lambda_R \right) \lambda_R
+
+- 12 \tr\left(\lambda_R^{*} \lambda_R \right) \lambda_R \lambda_R^{*} \lambda_R
+
+- 3 \tr\left(\lambda_L^{*} \lambda_L \right) \lambda_N^{\trans} \lambda_N^{*} \lambda_R
+
+- 3 \tr\left(\lambda_L^{*} \lambda_L \right) \lambda_N^{\trans} \lambda_L \lambda_N
+
+- 3 \tr\left(\lambda_L^{*} \lambda_L \right) \lambda_R \lambda_N^{\dagger} \lambda_N
+
+- 12 \tr\left(\lambda_L^{*} \lambda_L \right) \lambda_R \lambda_R^{*} \lambda_R
+
+- 12 \tr\left(\lambda_L^{*} \lambda_L \lambda_L^{*} \lambda_L \right) \lambda_R
+
+- 2 \lambda_P Y_\nu^{\trans} Y_\nu^{*} \lambda_R
+
+- 2 \lambda_S \lambda_N^{\trans} \lambda_N^{*} \lambda_R
+
+- 2 \lambda_S \lambda_N^{\trans} \lambda_L \lambda_N
+
+- 2 \lambda_P \lambda_R Y_\nu^{\dagger} Y_\nu
+
+- 2 \lambda_S \lambda_R \lambda_N^{\dagger} \lambda_N
+
+- 8 \lambda_S \lambda_R \lambda_R^{*} \lambda_R
+
++ \frac{1}{4} \lambda_P^{2} \lambda_R
+
++ \frac{1}{4} \lambda_S^{2} \lambda_R
+
++ 48 \lambda_1 \lambda_1^{*} \lambda_R
+
++ \frac{17}{8} g_{U1Y}^{2} Y_\nu^{\trans} Y_\nu^{*} \lambda_R
+
++ \frac{51}{8} g_{SU2L}^{2} Y_\nu^{\trans} Y_\nu^{*} \lambda_R
+
++ \frac{17}{8} g_{U1Y}^{2} \lambda_R Y_\nu^{\dagger} Y_\nu
+
++ \frac{51}{8} g_{SU2L}^{2} \lambda_R Y_\nu^{\dagger} Y_\nu
+\end{autobreak}
+\end{align*}
+\begin{align*}
+\begin{autobreak}
+\beta^{(1)}(\lambda_L) =
+
++ \lambda_N^{*} \lambda_N^{\trans} \lambda_L
+
++ \lambda_N^{*} \lambda_R \lambda_N^{\dagger}
+
++ \lambda_L \lambda_N \lambda_N^{\dagger}
+
++ 4 \lambda_L \lambda_L^{*} \lambda_L
+
++ \tr\left(\lambda_N^{\dagger} \lambda_N \right) \lambda_L
+
++ 2 \tr\left(\lambda_R^{*} \lambda_R \right) \lambda_L
+
++ 2 \tr\left(\lambda_L^{*} \lambda_L \right) \lambda_L
+\end{autobreak}
+\end{align*}
+\begin{align*}
+\begin{autobreak}
+\beta^{(2)}(\lambda_L) =
+
+-  \frac{1}{4} \lambda_N^{*} Y_\nu^{\trans} Y_\nu^{*} \lambda_N^{\trans} \lambda_L
+
+-  \frac{1}{4} \lambda_N^{*} Y_\nu^{\trans} Y_\nu^{*} \lambda_R \lambda_N^{\dagger}
+
++ \frac{7}{4} \lambda_N^{*} \lambda_N^{\trans} \lambda_N^{*} \lambda_N^{\trans} \lambda_L
+
++ \frac{7}{4} \lambda_N^{*} \lambda_N^{\trans} \lambda_N^{*} \lambda_R \lambda_N^{\dagger}
+
++ \frac{7}{4} \lambda_N^{*} \lambda_N^{\trans} \lambda_L \lambda_N \lambda_N^{\dagger}
+
++ 7 \lambda_N^{*} \lambda_N^{\trans} \lambda_L \lambda_L^{*} \lambda_L
+
+-  \frac{1}{4} \lambda_N^{*} \lambda_R Y_\nu^{\dagger} Y_\nu \lambda_N^{\dagger}
+
++ \frac{7}{4} \lambda_N^{*} \lambda_R \lambda_N^{\dagger} \lambda_N \lambda_N^{\dagger}
+
++ 7 \lambda_N^{*} \lambda_R \lambda_N^{\dagger} \lambda_L^{*} \lambda_L
+
++ 7 \lambda_N^{*} \lambda_R \lambda_R^{*} \lambda_N^{\trans} \lambda_L
+
++ 7 \lambda_N^{*} \lambda_R \lambda_R^{*} \lambda_R \lambda_N^{\dagger}
+
+-  \frac{1}{4} \lambda_L \lambda_N Y_\nu^{\dagger} Y_\nu \lambda_N^{\dagger}
+
++ \frac{7}{4} \lambda_L \lambda_N \lambda_N^{\dagger} \lambda_N \lambda_N^{\dagger}
+
++ 7 \lambda_L \lambda_N \lambda_N^{\dagger} \lambda_L^{*} \lambda_L
+
++ 7 \lambda_L \lambda_N \lambda_R^{*} \lambda_N^{\trans} \lambda_L
+
++ 7 \lambda_L \lambda_N \lambda_R^{*} \lambda_R \lambda_N^{\dagger}
+
++ 7 \lambda_L \lambda_L^{*} \lambda_N^{*} \lambda_N^{\trans} \lambda_L
+
++ 7 \lambda_L \lambda_L^{*} \lambda_N^{*} \lambda_R \lambda_N^{\dagger}
+
++ 7 \lambda_L \lambda_L^{*} \lambda_L \lambda_N \lambda_N^{\dagger}
+
++ 28 \lambda_L \lambda_L^{*} \lambda_L \lambda_L^{*} \lambda_L
+
+-  \frac{3}{2} \tr\left(Y_\nu^{\dagger} Y_\nu \lambda_N^{\dagger} \lambda_N \right) \lambda_L
+
+- 6 \tr\left(Y_\nu^{\dagger} Y_\nu \lambda_R^{*} \lambda_R \right) \lambda_L
+
+-  \frac{3}{2} \tr\left(\lambda_N^{\dagger} \lambda_N \lambda_N^{\dagger} \lambda_N \right) \lambda_L
+
+-  \frac{3}{2} \tr\left(\lambda_N^{\dagger} \lambda_N \right) \lambda_N^{*} \lambda_N^{\trans} \lambda_L
+
+-  \frac{3}{2} \tr\left(\lambda_N^{\dagger} \lambda_N \right) \lambda_N^{*} \lambda_R \lambda_N^{\dagger}
+
+- 12 \tr\left(\lambda_N^{\dagger} \lambda_N \lambda_R^{*} \lambda_R \right) \lambda_L
+
+-  \frac{3}{2} \tr\left(\lambda_N^{\dagger} \lambda_N \right) \lambda_L \lambda_N \lambda_N^{\dagger}
+
+- 6 \tr\left(\lambda_N^{\dagger} \lambda_N \right) \lambda_L \lambda_L^{*} \lambda_L
+
+- 6 \tr\left(\lambda_N^{\dagger} \lambda_L^{*} \lambda_N^{*} \lambda_R \right) \lambda_L
+
+- 12 \tr\left(\lambda_N^{\dagger} \lambda_L^{*} \lambda_L \lambda_N \right) \lambda_L
+
+- 6 \tr\left(\lambda_R^{*} \lambda_N^{\trans} \lambda_L \lambda_N \right) \lambda_L
+
+- 3 \tr\left(\lambda_R^{*} \lambda_R \right) \lambda_N^{*} \lambda_N^{\trans} \lambda_L
+
+- 3 \tr\left(\lambda_R^{*} \lambda_R \right) \lambda_N^{*} \lambda_R \lambda_N^{\dagger}
+
+- 12 \tr\left(\lambda_R^{*} \lambda_R \lambda_R^{*} \lambda_R \right) \lambda_L
+
+- 3 \tr\left(\lambda_R^{*} \lambda_R \right) \lambda_L \lambda_N \lambda_N^{\dagger}
+
+- 12 \tr\left(\lambda_R^{*} \lambda_R \right) \lambda_L \lambda_L^{*} \lambda_L
+
+- 3 \tr\left(\lambda_L^{*} \lambda_L \right) \lambda_N^{*} \lambda_N^{\trans} \lambda_L
+
+- 3 \tr\left(\lambda_L^{*} \lambda_L \right) \lambda_N^{*} \lambda_R \lambda_N^{\dagger}
+
+- 3 \tr\left(\lambda_L^{*} \lambda_L \right) \lambda_L \lambda_N \lambda_N^{\dagger}
+
+- 12 \tr\left(\lambda_L^{*} \lambda_L \lambda_L^{*} \lambda_L \right) \lambda_L
+
+- 12 \tr\left(\lambda_L^{*} \lambda_L \right) \lambda_L \lambda_L^{*} \lambda_L
+
+- 2 \lambda_S \lambda_N^{*} \lambda_N^{\trans} \lambda_L
+
+- 2 \lambda_S \lambda_N^{*} \lambda_R \lambda_N^{\dagger}
+
+- 2 \lambda_S \lambda_L \lambda_N \lambda_N^{\dagger}
+
+- 8 \lambda_S \lambda_L \lambda_L^{*} \lambda_L
+
++ \frac{1}{4} \lambda_P^{2} \lambda_L
+
++ \frac{1}{4} \lambda_S^{2} \lambda_L
+
++ 48 \lambda_1 \lambda_1^{*} \lambda_L
+\end{autobreak}
+\end{align*}
+}
+
+\subsection{Quartic couplings}
+{\allowdisplaybreaks
+
+\begin{align*}
+\begin{autobreak}
+\beta^{(1)}(\lambda_H) =
+
++ 24 \lambda_H^{2}
+
++ \frac{1}{4} \lambda_P^{2}
+
+- 3 g_{U1Y}^{2} \lambda_H
+
+- 9 g_{SU2L}^{2} \lambda_H
+
++ \frac{3}{8} g_{U1Y}^{4}
+
++ \frac{3}{4} g_{SU2L}^{2} g_{U1Y}^{2}
+
++ \frac{9}{8} g_{SU2L}^{4}
+
++ 4 \lambda_H \tr\left(Y_\nu^{\dagger} Y_\nu \right)
+
+- 2 \tr\left(Y_\nu^{\dagger} Y_\nu Y_\nu^{\dagger} Y_\nu \right)
+\end{autobreak}
+\end{align*}
+\begin{align*}
+\begin{autobreak}
+\beta^{(2)}(\lambda_H) =
+
+- 312 \lambda_H^{3}
+
+-  \frac{5}{2} \lambda_H \lambda_P^{2}
+
+-  \frac{1}{2} \lambda_P^{3}
+
++ 36 g_{U1Y}^{2} \lambda_H^{2}
+
++ 108 g_{SU2L}^{2} \lambda_H^{2}
+
++ \frac{289}{24} g_{U1Y}^{4} \lambda_H
+
++ \frac{39}{4} g_{SU2L}^{2} g_{U1Y}^{2} \lambda_H
+
+-  \frac{253}{8} g_{SU2L}^{4} \lambda_H
+
+-  \frac{107}{48} g_{U1Y}^{6}
+
+-  \frac{287}{48} g_{SU2L}^{2} g_{U1Y}^{4}
+
+-  \frac{145}{48} g_{SU2L}^{4} g_{U1Y}^{2}
+
++ \frac{449}{16} g_{SU2L}^{6}
+
+- 48 \lambda_H^{2} \tr\left(Y_\nu^{\dagger} Y_\nu \right)
+
+-  \frac{1}{2} \lambda_P^{2} \tr\left(\lambda_N^{\dagger} \lambda_N \right)
+
+-  \lambda_P^{2} \tr\left(\lambda_R^{*} \lambda_R \right)
+
+-  \lambda_P^{2} \tr\left(\lambda_L^{*} \lambda_L \right)
+
++ \frac{5}{2} g_{U1Y}^{2} \lambda_H \tr\left(Y_\nu^{\dagger} Y_\nu \right)
+
++ \frac{15}{2} g_{SU2L}^{2} \lambda_H \tr\left(Y_\nu^{\dagger} Y_\nu \right)
+
+-  \frac{1}{4} g_{U1Y}^{4} \tr\left(Y_\nu^{\dagger} Y_\nu \right)
+
+-  \frac{1}{2} g_{SU2L}^{2} g_{U1Y}^{2} \tr\left(Y_\nu^{\dagger} Y_\nu \right)
+
+-  \frac{3}{4} g_{SU2L}^{4} \tr\left(Y_\nu^{\dagger} Y_\nu \right)
+
+-  \lambda_H \tr\left(Y_\nu^{\dagger} Y_\nu Y_\nu^{\dagger} Y_\nu \right)
+
+- 3 \lambda_H \tr\left(Y_\nu^{\dagger} Y_\nu \lambda_N^{\dagger} \lambda_N \right)
+
+- 12 \lambda_H \tr\left(Y_\nu^{\dagger} Y_\nu \lambda_R^{*} \lambda_R \right)
+
++ 10 \tr\left(Y_\nu^{\dagger} Y_\nu Y_\nu^{\dagger} Y_\nu Y_\nu^{\dagger} Y_\nu \right)
+
++ 2 \tr\left(Y_\nu^{\dagger} Y_\nu Y_\nu^{\dagger} Y_\nu \lambda_N^{\dagger} \lambda_N \right)
+
++ 8 \tr\left(Y_\nu^{\dagger} Y_\nu Y_\nu^{\dagger} Y_\nu \lambda_R^{*} \lambda_R \right)
+
++ 8 \tr\left(Y_\nu^{\dagger} Y_\nu \lambda_R^{*} Y_\nu^{\trans} Y_\nu^{*} \lambda_R \right)
+\end{autobreak}
+\end{align*}
+\begin{align*}
+\begin{autobreak}
+\beta^{(1)}(\lambda_P) =
+
++ 12 \lambda_H \lambda_P
+
++ 2 \lambda_P^{2}
+
++ 2 \lambda_P \lambda_S
+
+-  \frac{3}{2} g_{U1Y}^{2} \lambda_P
+
+-  \frac{9}{2} g_{SU2L}^{2} \lambda_P
+
++ 2 \lambda_P \tr\left(Y_\nu^{\dagger} Y_\nu \right)
+
++ 2 \lambda_P \tr\left(\lambda_N^{\dagger} \lambda_N \right)
+
++ 4 \lambda_P \tr\left(\lambda_R^{*} \lambda_R \right)
+
++ 4 \lambda_P \tr\left(\lambda_L^{*} \lambda_L \right)
+
+- 8 \tr\left(Y_\nu^{\dagger} Y_\nu \lambda_N^{\dagger} \lambda_N \right)
+
+- 32 \tr\left(Y_\nu^{\dagger} Y_\nu \lambda_R^{*} \lambda_R \right)
+\end{autobreak}
+\end{align*}
+\begin{align*}
+\begin{autobreak}
+\beta^{(2)}(\lambda_P) =
+
+- 36 \lambda_H \lambda_P^{2}
+
+- 60 \lambda_H^{2} \lambda_P
+
+-  \frac{11}{4} \lambda_P^{3}
+
+-  \frac{5}{2} \lambda_P \lambda_S^{2}
+
+- 6 \lambda_P^{2} \lambda_S
+
+- 480 \lambda_1 \lambda_1^{*} \lambda_P
+
++ 24 g_{U1Y}^{2} \lambda_H \lambda_P
+
++ 72 g_{SU2L}^{2} \lambda_H \lambda_P
+
++ \frac{1}{2} g_{U1Y}^{2} \lambda_P^{2}
+
++ \frac{3}{2} g_{SU2L}^{2} \lambda_P^{2}
+
++ \frac{217}{48} g_{U1Y}^{4} \lambda_P
+
++ \frac{15}{8} g_{SU2L}^{2} g_{U1Y}^{2} \lambda_P
+
+-  \frac{325}{16} g_{SU2L}^{4} \lambda_P
+
+- 24 \lambda_H \lambda_P \tr\left(Y_\nu^{\dagger} Y_\nu \right)
+
+- 2 \lambda_P^{2} \tr\left(Y_\nu^{\dagger} Y_\nu \right)
+
+- 2 \lambda_P^{2} \tr\left(\lambda_N^{\dagger} \lambda_N \right)
+
+- 4 \lambda_P^{2} \tr\left(\lambda_R^{*} \lambda_R \right)
+
+- 4 \lambda_P^{2} \tr\left(\lambda_L^{*} \lambda_L \right)
+
+- 4 \lambda_P \lambda_S \tr\left(\lambda_N^{\dagger} \lambda_N \right)
+
+- 8 \lambda_P \lambda_S \tr\left(\lambda_R^{*} \lambda_R \right)
+
+- 8 \lambda_P \lambda_S \tr\left(\lambda_L^{*} \lambda_L \right)
+
++ \frac{5}{4} g_{U1Y}^{2} \lambda_P \tr\left(Y_\nu^{\dagger} Y_\nu \right)
+
++ \frac{15}{4} g_{SU2L}^{2} \lambda_P \tr\left(Y_\nu^{\dagger} Y_\nu \right)
+
+-  \frac{9}{2} \lambda_P \tr\left(Y_\nu^{\dagger} Y_\nu Y_\nu^{\dagger} Y_\nu \right)
+
++ \frac{7}{2} \lambda_P \tr\left(Y_\nu^{\dagger} Y_\nu \lambda_N^{\dagger} \lambda_N \right)
+
++ 14 \lambda_P \tr\left(Y_\nu^{\dagger} Y_\nu \lambda_R^{*} \lambda_R \right)
+
+- 3 \lambda_P \tr\left(\lambda_N^{\dagger} \lambda_N \lambda_N^{\dagger} \lambda_N \right)
+
+- 24 \lambda_P \tr\left(\lambda_N^{\dagger} \lambda_N \lambda_R^{*} \lambda_R \right)
+
+- 12 \lambda_P \tr\left(\lambda_N^{\dagger} \lambda_L^{*} \lambda_N^{*} \lambda_R \right)
+
+- 24 \lambda_P \tr\left(\lambda_N^{\dagger} \lambda_L^{*} \lambda_L \lambda_N \right)
+
+- 12 \lambda_P \tr\left(\lambda_R^{*} \lambda_N^{\trans} \lambda_L \lambda_N \right)
+
+- 24 \lambda_P \tr\left(\lambda_R^{*} \lambda_R \lambda_R^{*} \lambda_R \right)
+
+- 24 \lambda_P \tr\left(\lambda_L^{*} \lambda_L \lambda_L^{*} \lambda_L \right)
+
++ 28 \tr\left(Y_\nu^{\dagger} Y_\nu Y_\nu^{\dagger} Y_\nu \lambda_N^{\dagger} \lambda_N \right)
+
++ 112 \tr\left(Y_\nu^{\dagger} Y_\nu Y_\nu^{\dagger} Y_\nu \lambda_R^{*} \lambda_R \right)
+
++ 20 \tr\left(Y_\nu^{\dagger} Y_\nu \lambda_N^{\dagger} \lambda_N \lambda_N^{\dagger} \lambda_N \right)
+
++ 80 \tr\left(Y_\nu^{\dagger} Y_\nu \lambda_N^{\dagger} \lambda_N \lambda_R^{*} \lambda_R \right)
+
++ 80 \tr\left(Y_\nu^{\dagger} Y_\nu \lambda_N^{\dagger} \lambda_L^{*} \lambda_N^{*} \lambda_R \right)
+
++ 80 \tr\left(Y_\nu^{\dagger} Y_\nu \lambda_N^{\dagger} \lambda_L^{*} \lambda_L \lambda_N \right)
+
++ 64 \tr\left(Y_\nu^{\dagger} Y_\nu \lambda_R^{*} Y_\nu^{\trans} Y_\nu^{*} \lambda_R \right)
+
++ 80 \tr\left(Y_\nu^{\dagger} Y_\nu \lambda_R^{*} \lambda_N^{\trans} \lambda_N^{*} \lambda_R \right)
+
++ 80 \tr\left(Y_\nu^{\dagger} Y_\nu \lambda_R^{*} \lambda_N^{\trans} \lambda_L \lambda_N \right)
+
++ 80 \tr\left(Y_\nu^{\dagger} Y_\nu \lambda_R^{*} \lambda_R \lambda_N^{\dagger} \lambda_N \right)
+
++ 320 \tr\left(Y_\nu^{\dagger} Y_\nu \lambda_R^{*} \lambda_R \lambda_R^{*} \lambda_R \right)
+\end{autobreak}
+\end{align*}
+\begin{align*}
+\begin{autobreak}
+\beta^{(1)}(\lambda_S) =
+
++ 2 \lambda_P^{2}
+
++ 5 \lambda_S^{2}
+
++ 576 \lambda_1 \lambda_1^{*}
+
++ 4 \lambda_S \tr\left(\lambda_N^{\dagger} \lambda_N \right)
+
++ 8 \lambda_S \tr\left(\lambda_R^{*} \lambda_R \right)
+
++ 8 \lambda_S \tr\left(\lambda_L^{*} \lambda_L \right)
+
+- 8 \tr\left(\lambda_N^{\dagger} \lambda_N \lambda_N^{\dagger} \lambda_N \right)
+
+- 64 \tr\left(\lambda_N^{\dagger} \lambda_N \lambda_R^{*} \lambda_R \right)
+
+- 32 \tr\left(\lambda_N^{\dagger} \lambda_L^{*} \lambda_N^{*} \lambda_R \right)
+
+- 64 \tr\left(\lambda_N^{\dagger} \lambda_L^{*} \lambda_L \lambda_N \right)
+
+- 32 \tr\left(\lambda_R^{*} \lambda_N^{\trans} \lambda_L \lambda_N \right)
+
+- 64 \tr\left(\lambda_R^{*} \lambda_R \lambda_R^{*} \lambda_R \right)
+
+- 64 \tr\left(\lambda_L^{*} \lambda_L \lambda_L^{*} \lambda_L \right)
+\end{autobreak}
+\end{align*}
+\begin{align*}
+\begin{autobreak}
+\beta^{(2)}(\lambda_S) =
+
+- 4 \lambda_P^{3}
+
+- 5 \lambda_P^{2} \lambda_S
+
+- 15 \lambda_S^{3}
+
+- 4416 \lambda_1 \lambda_1^{*} \lambda_S
+
++ 4 g_{U1Y}^{2} \lambda_P^{2}
+
++ 12 g_{SU2L}^{2} \lambda_P^{2}
+
+- 4 \lambda_P^{2} \tr\left(Y_\nu^{\dagger} Y_\nu \right)
+
+- 10 \lambda_S^{2} \tr\left(\lambda_N^{\dagger} \lambda_N \right)
+
+- 20 \lambda_S^{2} \tr\left(\lambda_R^{*} \lambda_R \right)
+
+- 20 \lambda_S^{2} \tr\left(\lambda_L^{*} \lambda_L \right)
+
+- 1152 \lambda_1 \lambda_1^{*} \tr\left(\lambda_N^{\dagger} \lambda_N \right)
+
+- 2304 \lambda_1 \lambda_1^{*} \tr\left(\lambda_R^{*} \lambda_R \right)
+
+- 2304 \lambda_1 \lambda_1^{*} \tr\left(\lambda_L^{*} \lambda_L \right)
+
+- 6 \lambda_S \tr\left(Y_\nu^{\dagger} Y_\nu \lambda_N^{\dagger} \lambda_N \right)
+
+- 24 \lambda_S \tr\left(Y_\nu^{\dagger} Y_\nu \lambda_R^{*} \lambda_R \right)
+
++ 2 \lambda_S \tr\left(\lambda_N^{\dagger} \lambda_N \lambda_N^{\dagger} \lambda_N \right)
+
++ 16 \lambda_S \tr\left(\lambda_N^{\dagger} \lambda_N \lambda_R^{*} \lambda_R \right)
+
++ 8 \lambda_S \tr\left(\lambda_N^{\dagger} \lambda_L^{*} \lambda_N^{*} \lambda_R \right)
+
++ 16 \lambda_S \tr\left(\lambda_N^{\dagger} \lambda_L^{*} \lambda_L \lambda_N \right)
+
++ 8 \lambda_S \tr\left(\lambda_R^{*} \lambda_N^{\trans} \lambda_L \lambda_N \right)
+
++ 16 \lambda_S \tr\left(\lambda_R^{*} \lambda_R \lambda_R^{*} \lambda_R \right)
+
++ 16 \lambda_S \tr\left(\lambda_L^{*} \lambda_L \lambda_L^{*} \lambda_L \right)
+
++ 16 \tr\left(Y_\nu^{\dagger} Y_\nu \lambda_N^{\dagger} \lambda_N \lambda_N^{\dagger} \lambda_N \right)
+
++ 64 \tr\left(Y_\nu^{\dagger} Y_\nu \lambda_N^{\dagger} \lambda_N \lambda_R^{*} \lambda_R \right)
+
++ 64 \tr\left(Y_\nu^{\dagger} Y_\nu \lambda_N^{\dagger} \lambda_L^{*} \lambda_N^{*} \lambda_R \right)
+
++ 64 \tr\left(Y_\nu^{\dagger} Y_\nu \lambda_N^{\dagger} \lambda_L^{*} \lambda_L \lambda_N \right)
+
++ 64 \tr\left(Y_\nu^{\dagger} Y_\nu \lambda_R^{*} \lambda_N^{\trans} \lambda_N^{*} \lambda_R \right)
+
++ 64 \tr\left(Y_\nu^{\dagger} Y_\nu \lambda_R^{*} \lambda_N^{\trans} \lambda_L \lambda_N \right)
+
++ 64 \tr\left(Y_\nu^{\dagger} Y_\nu \lambda_R^{*} \lambda_R \lambda_N^{\dagger} \lambda_N \right)
+
++ 256 \tr\left(Y_\nu^{\dagger} Y_\nu \lambda_R^{*} \lambda_R \lambda_R^{*} \lambda_R \right)
+
++ 32 \tr\left(\lambda_N^{\dagger} \lambda_N \lambda_N^{\dagger} \lambda_N \lambda_N^{\dagger} \lambda_N \right)
+
++ 384 \tr\left(\lambda_N^{\dagger} \lambda_N \lambda_N^{\dagger} \lambda_N \lambda_R^{*} \lambda_R \right)
+
++ 192 \tr\left(\lambda_N^{\dagger} \lambda_N \lambda_R^{*} \lambda_N^{\trans} \lambda_N^{*} \lambda_R \right)
+
++ 384 \tr\left(\lambda_N^{\dagger} \lambda_N \lambda_R^{*} \lambda_N^{\trans} \lambda_L \lambda_N \right)
+
++ 1536 \tr\left(\lambda_N^{\dagger} \lambda_N \lambda_R^{*} \lambda_R \lambda_R^{*} \lambda_R \right)
+
++ 192 \tr\left(\lambda_N^{\dagger} \lambda_L^{*} \lambda_N^{*} \lambda_N^{\trans} \lambda_L \lambda_N \right)
+
++ 384 \tr\left(\lambda_N^{\dagger} \lambda_L^{*} \lambda_N^{*} \lambda_R \lambda_N^{\dagger} \lambda_N \right)
+
++ 768 \tr\left(\lambda_N^{\dagger} \lambda_L^{*} \lambda_N^{*} \lambda_R \lambda_R^{*} \lambda_R \right)
+
++ 384 \tr\left(\lambda_N^{\dagger} \lambda_L^{*} \lambda_L \lambda_N \lambda_N^{\dagger} \lambda_N \right)
+
++ 1536 \tr\left(\lambda_N^{\dagger} \lambda_L^{*} \lambda_L \lambda_N \lambda_R^{*} \lambda_R \right)
+
++ 768 \tr\left(\lambda_N^{\dagger} \lambda_L^{*} \lambda_L \lambda_L^{*} \lambda_N^{*} \lambda_R \right)
+
++ 1536 \tr\left(\lambda_N^{\dagger} \lambda_L^{*} \lambda_L \lambda_L^{*} \lambda_L \lambda_N \right)
+
++ 768 \tr\left(\lambda_R^{*} \lambda_N^{\trans} \lambda_L \lambda_N \lambda_R^{*} \lambda_R \right)
+
++ 768 \tr\left(\lambda_R^{*} \lambda_N^{\trans} \lambda_L \lambda_L^{*} \lambda_L \lambda_N \right)
+
++ 1024 \tr\left(\lambda_R^{*} \lambda_R \lambda_R^{*} \lambda_R \lambda_R^{*} \lambda_R \right)
+
++ 1024 \tr\left(\lambda_L^{*} \lambda_L \lambda_L^{*} \lambda_L \lambda_L^{*} \lambda_L \right)
+\end{autobreak}
+\end{align*}
+\begin{align*}
+\begin{autobreak}
+\beta^{(1)}(\lambda_1) =
+
++ 6 \lambda_1 \lambda_S
+
++ 4 \lambda_1 \tr\left(\lambda_N^{\dagger} \lambda_N \right)
+
++ 8 \lambda_1 \tr\left(\lambda_R^{*} \lambda_R \right)
+
++ 8 \lambda_1 \tr\left(\lambda_L^{*} \lambda_L \right)
+\end{autobreak}
+\end{align*}
+\begin{align*}
+\begin{autobreak}
+\beta^{(2)}(\lambda_1) =
+
+- 5 \lambda_1 \lambda_P^{2}
+
+- 23 \lambda_1 \lambda_S^{2}
+
++ 192 \lambda_1^{2} \lambda_1^{*}
+
+- 12 \lambda_1 \lambda_S \tr\left(\lambda_N^{\dagger} \lambda_N \right)
+
+- 24 \lambda_1 \lambda_S \tr\left(\lambda_R^{*} \lambda_R \right)
+
+- 24 \lambda_1 \lambda_S \tr\left(\lambda_L^{*} \lambda_L \right)
+
+- 6 \lambda_1 \tr\left(Y_\nu^{\dagger} Y_\nu \lambda_N^{\dagger} \lambda_N \right)
+
+- 24 \lambda_1 \tr\left(Y_\nu^{\dagger} Y_\nu \lambda_R^{*} \lambda_R \right)
+
++ 18 \lambda_1 \tr\left(\lambda_N^{\dagger} \lambda_N \lambda_N^{\dagger} \lambda_N \right)
+
++ 144 \lambda_1 \tr\left(\lambda_N^{\dagger} \lambda_N \lambda_R^{*} \lambda_R \right)
+
++ 72 \lambda_1 \tr\left(\lambda_N^{\dagger} \lambda_L^{*} \lambda_N^{*} \lambda_R \right)
+
++ 144 \lambda_1 \tr\left(\lambda_N^{\dagger} \lambda_L^{*} \lambda_L \lambda_N \right)
+
++ 72 \lambda_1 \tr\left(\lambda_R^{*} \lambda_N^{\trans} \lambda_L \lambda_N \right)
+
++ 144 \lambda_1 \tr\left(\lambda_R^{*} \lambda_R \lambda_R^{*} \lambda_R \right)
+
++ 144 \lambda_1 \tr\left(\lambda_L^{*} \lambda_L \lambda_L^{*} \lambda_L \right)
+\end{autobreak}
+\end{align*}
+\begin{align*}
+\begin{autobreak}
+\beta^{(1)}(\lambda_1^{*}) =
+
++ 6 \lambda_1^{*} \lambda_S
+
++ 4 \lambda_1^{*} \tr\left(\lambda_N^{\dagger} \lambda_N \right)
+
++ 8 \lambda_1^{*} \tr\left(\lambda_R^{*} \lambda_R \right)
+
++ 8 \lambda_1^{*} \tr\left(\lambda_L^{*} \lambda_L \right)
+\end{autobreak}
+\end{align*}
+\begin{align*}
+\begin{autobreak}
+\beta^{(2)}(\lambda_1^{*}) =
+
++ 192 \lambda_1 \left(\lambda_1^{*}\right)^{2}
+
+- 5 \lambda_1^{*} \lambda_P^{2}
+
+- 23 \lambda_1^{*} \lambda_S^{2}
+
+- 12 \lambda_1^{*} \lambda_S \tr\left(\lambda_N^{\dagger} \lambda_N \right)
+
+- 24 \lambda_1^{*} \lambda_S \tr\left(\lambda_R^{*} \lambda_R \right)
+
+- 24 \lambda_1^{*} \lambda_S \tr\left(\lambda_L^{*} \lambda_L \right)
+
+- 6 \lambda_1^{*} \tr\left(Y_\nu^{\dagger} Y_\nu \lambda_N^{\dagger} \lambda_N \right)
+
+- 24 \lambda_1^{*} \tr\left(Y_\nu^{\dagger} Y_\nu \lambda_R^{*} \lambda_R \right)
+
++ 18 \lambda_1^{*} \tr\left(\lambda_N^{\dagger} \lambda_N \lambda_N^{\dagger} \lambda_N \right)
+
++ 144 \lambda_1^{*} \tr\left(\lambda_N^{\dagger} \lambda_N \lambda_R^{*} \lambda_R \right)
+
++ 72 \lambda_1^{*} \tr\left(\lambda_N^{\dagger} \lambda_L^{*} \lambda_N^{*} \lambda_R \right)
+
++ 144 \lambda_1^{*} \tr\left(\lambda_N^{\dagger} \lambda_L^{*} \lambda_L \lambda_N \right)
+
++ 72 \lambda_1^{*} \tr\left(\lambda_R^{*} \lambda_N^{\trans} \lambda_L \lambda_N \right)
+
++ 144 \lambda_1^{*} \tr\left(\lambda_R^{*} \lambda_R \lambda_R^{*} \lambda_R \right)
+
++ 144 \lambda_1^{*} \tr\left(\lambda_L^{*} \lambda_L \lambda_L^{*} \lambda_L \right)
+\end{autobreak}
+\end{align*}
+}
+
+\subsection{Scalar mass couplings}
+{\allowdisplaybreaks
+
+\begin{align*}
+\begin{autobreak}
+\beta^{(1)}(m_1) =
+
++ \frac{1}{2} \lambda_S m_1
+
++ 6 \lambda_1 m_1
+
++ 6 \lambda_1^{*} m_1
+
++ m_1 \tr\left(\lambda_N^{\dagger} \lambda_N \right)
+
++ 2 m_1 \tr\left(\lambda_R^{*} \lambda_R \right)
+
++ 2 m_1 \tr\left(\lambda_L^{*} \lambda_L \right)
+\end{autobreak}
+\end{align*}
+\begin{align*}
+\begin{autobreak}
+\beta^{(2)}(m_1) =
+
+-  \frac{1}{4} \lambda_P^{2} m_1
+
+-  \frac{3}{4} \lambda_S^{2} m_1
+
+- 12 \lambda_1 \lambda_S m_1
+
++ 48 \lambda_1 \lambda_1^{*} m_1
+
+- 12 \lambda_1^{*} \lambda_S m_1
+
+-  \lambda_S m_1 \tr\left(\lambda_N^{\dagger} \lambda_N \right)
+
+- 2 \lambda_S m_1 \tr\left(\lambda_R^{*} \lambda_R \right)
+
+- 2 \lambda_S m_1 \tr\left(\lambda_L^{*} \lambda_L \right)
+
+- 12 \lambda_1 m_1 \tr\left(\lambda_N^{\dagger} \lambda_N \right)
+
+- 24 \lambda_1 m_1 \tr\left(\lambda_R^{*} \lambda_R \right)
+
+- 24 \lambda_1 m_1 \tr\left(\lambda_L^{*} \lambda_L \right)
+
+- 12 \lambda_1^{*} m_1 \tr\left(\lambda_N^{\dagger} \lambda_N \right)
+
+- 24 \lambda_1^{*} m_1 \tr\left(\lambda_R^{*} \lambda_R \right)
+
+- 24 \lambda_1^{*} m_1 \tr\left(\lambda_L^{*} \lambda_L \right)
+
+-  \frac{3}{2} m_1 \tr\left(Y_\nu^{\dagger} Y_\nu \lambda_N^{\dagger} \lambda_N \right)
+
+- 6 m_1 \tr\left(Y_\nu^{\dagger} Y_\nu \lambda_R^{*} \lambda_R \right)
+
++ \frac{1}{2} m_1 \tr\left(\lambda_N^{\dagger} \lambda_N \lambda_N^{\dagger} \lambda_N \right)
+
++ 4 m_1 \tr\left(\lambda_N^{\dagger} \lambda_N \lambda_R^{*} \lambda_R \right)
+
++ 2 m_1 \tr\left(\lambda_N^{\dagger} \lambda_L^{*} \lambda_N^{*} \lambda_R \right)
+
++ 4 m_1 \tr\left(\lambda_N^{\dagger} \lambda_L^{*} \lambda_L \lambda_N \right)
+
++ 2 m_1 \tr\left(\lambda_R^{*} \lambda_N^{\trans} \lambda_L \lambda_N \right)
+
++ 4 m_1 \tr\left(\lambda_R^{*} \lambda_R \lambda_R^{*} \lambda_R \right)
+
++ 4 m_1 \tr\left(\lambda_L^{*} \lambda_L \lambda_L^{*} \lambda_L \right)
+\end{autobreak}
+\end{align*}
+}
+
+\subsection{Vacuum-expectation values}
+{\allowdisplaybreaks
+
+\textbf{Definitions:}
+\begin{align*}
+	H \; : \; \frac{1}{\sqrt{2}}{\Pi}_{2} &\rightarrow \frac{1}{\sqrt{2}}\left({\Pi}_{2} + v_H\right)\\
+	S \; : \; \frac{1}{\sqrt{2}}sR &\rightarrow \frac{1}{\sqrt{2}}\left(sR + v_S\right)
+\end{align*}
+
+\textbf{RGEs:}
+
+\begin{align*}
+\begin{autobreak}
+\beta^{(1)}(v_H) =
+
++ \frac{3}{4} g_{U1Y}^{2} v_H
+
++ \frac{1}{4} \xi g_{U1Y}^{2} v_H
+
++ \frac{9}{4} g_{SU2L}^{2} v_H
+
++ \frac{3}{4} \xi g_{SU2L}^{2} v_H
+
+-  v_H \tr\left(Y_\nu^{\dagger} Y_\nu \right)
+\end{autobreak}
+\end{align*}
+\begin{align*}
+\begin{autobreak}
+\beta^{(2)}(v_H) =
+
+-  \frac{91}{96} g_{U1Y}^{4} v_H
+
++ \frac{1}{8} \xi g_{U1Y}^{4} v_H
+
++ \frac{1}{8} \xi^{2} g_{U1Y}^{4} v_H
+
+-  \frac{9}{16} g_{SU2L}^{2} g_{U1Y}^{2} v_H
+
++ \frac{3}{4} \xi g_{SU2L}^{2} g_{U1Y}^{2} v_H
+
++ \frac{3}{4} \xi^{2} g_{SU2L}^{2} g_{U1Y}^{2} v_H
+
++ \frac{451}{32} g_{SU2L}^{4} v_H
+
++ \frac{27}{8} \xi g_{SU2L}^{4} v_H
+
+-  \frac{5}{8} g_{U1Y}^{2} v_H \tr\left(Y_\nu^{\dagger} Y_\nu \right)
+
+-  \frac{1}{2} \xi g_{U1Y}^{2} v_H \tr\left(Y_\nu^{\dagger} Y_\nu \right)
+
+-  \frac{15}{8} g_{SU2L}^{2} v_H \tr\left(Y_\nu^{\dagger} Y_\nu \right)
+
+-  \frac{3}{2} \xi g_{SU2L}^{2} v_H \tr\left(Y_\nu^{\dagger} Y_\nu \right)
+
++ \frac{9}{4} v_H \tr\left(Y_\nu^{\dagger} Y_\nu Y_\nu^{\dagger} Y_\nu \right)
+
++ \frac{3}{4} v_H \tr\left(Y_\nu^{\dagger} Y_\nu \lambda_N^{\dagger} \lambda_N \right)
+
++ 3 v_H \tr\left(Y_\nu^{\dagger} Y_\nu \lambda_R^{*} \lambda_R \right)
+
+- 6 \lambda_H^{2} v_H
+
+-  \frac{1}{8} \lambda_P^{2} v_H
+\end{autobreak}
+\end{align*}
+\begin{align*}
+\begin{autobreak}
+\beta^{(1)}(v_S) =
+
+-  v_S \tr\left(\lambda_N^{\dagger} \lambda_N \right)
+
+- 2 v_S \tr\left(\lambda_R^{*} \lambda_R \right)
+
+- 2 v_S \tr\left(\lambda_L^{*} \lambda_L \right)
+\end{autobreak}
+\end{align*}
+\begin{align*}
+\begin{autobreak}
+\beta^{(2)}(v_S) =
+
++ \frac{3}{2} v_S \tr\left(Y_\nu^{\dagger} Y_\nu \lambda_N^{\dagger} \lambda_N \right)
+
++ 6 v_S \tr\left(Y_\nu^{\dagger} Y_\nu \lambda_R^{*} \lambda_R \right)
+
++ \frac{3}{2} v_S \tr\left(\lambda_N^{\dagger} \lambda_N \lambda_N^{\dagger} \lambda_N \right)
+
++ 12 v_S \tr\left(\lambda_N^{\dagger} \lambda_N \lambda_R^{*} \lambda_R \right)
+
++ 6 v_S \tr\left(\lambda_N^{\dagger} \lambda_L^{*} \lambda_N^{*} \lambda_R \right)
+
++ 12 v_S \tr\left(\lambda_N^{\dagger} \lambda_L^{*} \lambda_L \lambda_N \right)
+
++ 6 v_S \tr\left(\lambda_R^{*} \lambda_N^{\trans} \lambda_L \lambda_N \right)
+
++ 12 v_S \tr\left(\lambda_R^{*} \lambda_R \lambda_R^{*} \lambda_R \right)
+
++ 12 v_S \tr\left(\lambda_L^{*} \lambda_L \lambda_L^{*} \lambda_L \right)
+
+-  \frac{1}{4} \lambda_P^{2} v_S
+
+-  \frac{1}{4} \lambda_S^{2} v_S
+
+- 48 \lambda_1 \lambda_1^{*} v_S
+\end{autobreak}
+\end{align*}
+}
+\end{document}

@@ -1,0 +1,64 @@
+Author: Alves
+Date: 27.10.2025
+Name: Goofy Neutrino
+Groups: {U1Y: U1, SU2L: SU2}
+
+Fermions: {
+   L: {Gen: 3, Qnb: {U1Y: -1/2, SU2L: 2}},
+   NR: {Gen: 3, Qnb:{}},
+   NL: {Gen: 3, Qnb:{}}
+}
+
+ComplexScalars: {
+   H : {RealFields: [Pi, Sigma], Norm: 1/sqrt(2), Qnb: {U1Y: 1/2, SU2L: 2}},
+   S : {RealFields: [sR, sI], Norm: 1/sqrt(2), Qnb: {}}
+}
+
+Potential : {
+   Definitions: {
+      Htilde[i] : Eps[i,j]*Hbar[j]
+   },
+   
+   Yukawas: {
+      Ynu : Lbar[i] Htilde[i] NR,
+      lambdaN : NLbar S NR,
+      lambdaR: NR S NR,
+      lambdaL: NL Sbar NL,
+   },
+   
+   QuarticTerms : {
+      lambdaH: (Hbar[i] H[i])**2,
+      lambdaP: 1/2 (Hbar[i] H[i])(Sbar S),
+      lambdaS: 1/4 (Sbar S)**2,
+      lambda1: S**4,
+      lambda1star: Sbar**4
+   },
+   ScalarMasses : {
+      m1 : {1/2(S**2 + (Sbar)**2), squared}
+   }
+}
+
+Vevs: {
+   vH: Pi[2],
+   vS: sR
+}
+
+Latex: {
+   NR : N_R,
+   NL : N_L,
+   Pi : \Pi,
+   Sigma : \Sigma,
+   Htilde : \tilde{H},
+   Ynu : Y_\nu,
+   lambdaN: \lambda_N,
+   lambdaR: \lambda_R,
+   lambdaL: \lambda_L,
+   lambdaH: \lambda_H,
+   lambdaP: \lambda_P,
+   lambda1: \lambda_1,
+   lambdaS: \lambda_S
+   vH: v_H,
+   vS: v_S,
+   m1 : m_1
+}
+
