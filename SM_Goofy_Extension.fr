@@ -1,0 +1,1433 @@
+
+M$ModelName = "SM_Goofy_Extension";
+
+M$Information = {
+  Authors      -> {"Max Beckmann"},
+  Version      -> "1.0",
+  Date         -> "03.11.2025",
+  Institutions -> {"MPIK"}
+};
+FeynmanGauge = True;
+
+
+(* Parameters  *)
+
+M$Parameters = {
+	(* External Parameters *)
+
+	m1 == {
+    	ParameterType    -> External, 
+    	Value            -> 1.0,
+	ComplexParameter -> False,
+	TeX              -> Subscript[m,1],
+    	Description      -> "S Mass before GSB"
+	},
+   
+	\[Lambda]S  == {
+    	ParameterType    -> External, 
+    	Value            -> 1.0,
+	ComplexParameter -> False,
+	TeX              -> Subscript[\[Lambda],S],
+    	Description      -> "Self interaction scalar singlet"
+	},
+	
+	\[Lambda]1 == {
+    	ParameterType    -> External, 
+    	Value            -> 1.0,
+	ComplexParameter -> False,
+	TeX              -> Subscript[\[Lambda],1],
+    	Description      -> "Quartic coupling scalar singlet"
+	},
+
+	\[Lambda]h == {
+    	ParameterType    -> External, 
+    	Value            -> 1.0,
+	ComplexParameter -> False,
+	TeX              -> Subscript[\[Lambda],h],
+    	Description      -> "Quartic coupling Higgs"
+	},
+
+	\[Lambda]P == {
+    	ParameterType    -> External, 
+    	Value            -> 1.0,
+	ComplexParameter -> False,
+	TeX              -> Subscript[\[Lambda],P],
+    	Description      -> "Portal term"
+	},
+
+	\[Theta] == {
+    	ParameterType    -> External, 
+    	Value            -> 0.1,
+	ComplexParameter -> False,
+    	Description      -> "Scalar mixing angle"
+	},
+
+	vH == {
+    	ParameterType    -> External, 
+    	Value            -> 256,
+	ComplexParameter -> False,
+    	Description      -> "Higgs vev"
+	},
+
+
+	vS == {
+    	ParameterType    -> External, 
+    	Value            -> 1000,
+	ComplexParameter -> False,
+    	Description      -> "Scalar vev"
+	},
+
+
+	Ynu == {
+    	ParameterType    -> External, 
+	BlockName        -> YUKAWA, 
+    	OrderBlock       -> 1, 
+    	Value            -> 1.0,
+	ComplexParameter -> False,
+	TeX              -> Subscript[Y,nu],
+    	Description      -> "Yukawa Coupling SM Neutrino Higgs Heavy NR"
+	},
+
+	lamN == {
+    	ParameterType    -> External, 
+	BlockName        -> LAMBDAN, 
+    	OrderBlock       -> 1, 
+    	Value            -> 1.0,
+	ComplexParameter -> False,
+	TeX              -> Subscript[\[Lambda],N],
+    	Description      -> "Dirac mass NL NR"
+	},
+
+	lamL == {
+    	ParameterType    -> External, 
+	BlockName        -> LAMBDAL, 
+    	OrderBlock       -> 1, 
+    	Value            -> 1.0,
+	ComplexParameter -> False,
+	TeX              -> Subscript[\[Lambda],L],
+    	Description      -> "Majorana mass NL"
+	},
+
+	lamR == {
+    	ParameterType    -> External, 
+	BlockName        -> LAMBDAR, 
+    	OrderBlock       -> 1, 
+    	Value            -> 1.0,
+	ComplexParameter -> False,
+	TeX              -> Subscript[\[Lambda],R],
+    	Description      -> "Majorana mass NR"
+	},
+	
+
+
+(*Light SM Gauge Neutrino mixing with light Neutrino mass states *)
+
+
+	Venu1 == {
+    	ParameterType    -> External, 
+	BlockName        -> NUMIXING, 
+    	OrderBlock       -> 19, 
+    	Value            -> 1.0,
+	ComplexParameter -> False,
+	TeX              -> Subscript[V,enu1],
+    	Description      -> "Mixing between ve flavor/gauge state and nu1 mass state"
+	},
+
+	Venu2 == {
+    	ParameterType    -> External, 
+	BlockName        -> NUMIXING, 
+    	OrderBlock       -> 20, 
+    	Value            -> 0.0,
+	ComplexParameter -> False,
+	TeX              -> Subscript[V,enu2],
+    	Description      -> "Mixing between ve flavor/gauge state and nu2 mass state"
+	},
+
+	Venu3 == {
+    	ParameterType    -> External, 
+	BlockName        -> NUMIXING, 
+    	OrderBlock       -> 21, 
+    	Value            -> 0.0,
+	ComplexParameter -> False,
+	TeX              -> Subscript[V,enu3],
+    	Description      -> "Mixing between ve flavor/gauge state and nu3 mass state"
+	},
+
+	Vmunu1 == {
+    	ParameterType    -> External, 
+	BlockName        -> NUMIXING, 
+    	OrderBlock       -> 22, 
+    	Value            -> 1.0,
+	ComplexParameter -> False,
+	TeX              -> Subscript[V,munu1],
+    	Description      -> "Mixing between vmu flavor/gauge state and nu1 mass state"
+	},
+
+	Vmunu2 == {
+    	ParameterType    -> External, 
+	BlockName        -> NUMIXING, 
+    	OrderBlock       -> 23, 
+    	Value            -> 0.0,
+	ComplexParameter -> False,
+	TeX              -> Subscript[V,munu2],
+    	Description      -> "Mixing between vmu flavor/gauge state and nu2 mass state"
+	},
+
+	Vmunu3 == {
+    	ParameterType    -> External, 
+	BlockName        -> NUMIXING, 
+    	OrderBlock       -> 24, 
+    	Value            -> 0.0,
+	ComplexParameter -> False,
+	TeX              -> Subscript[V,munu3],
+    	Description      -> "Mixing between vmu flavor/gauge state and nu3 mass state"
+	},
+
+	Vtnu1 == {
+    	ParameterType    -> External, 
+	BlockName        -> NUMIXING, 
+    	OrderBlock       -> 25, 
+    	Value            -> 1.0,
+	ComplexParameter -> False,
+	TeX              -> Subscript[V,tnu1],
+    	Description      -> "Mixing between vt flavor/gauge state and nu1 mass state"
+	},
+
+	Vtnu2 == {
+    	ParameterType    -> External, 
+	BlockName        -> NUMIXING, 
+    	OrderBlock       -> 26, 
+    	Value            -> 0.0,
+	ComplexParameter -> False,
+	TeX              -> Subscript[V,tnu2],
+    	Description      -> "Mixing between vt flavor/gauge state and nu2 mass state"
+	},
+
+	Vtnu3 == {
+    	ParameterType    -> External, 
+	BlockName        -> NUMIXING, 
+    	OrderBlock       -> 27, 
+    	Value            -> 0.0,
+	ComplexParameter -> False,
+	TeX              -> Subscript[V,tnu3],
+    	Description      -> "Mixing between vt flavor/gauge state and nu3 mass state"
+	},
+
+
+
+(*Light SM Gauge Neutrino mixing with heavy Neutrino mass states *)
+
+
+
+	VeN1 == {
+    	ParameterType    -> External, 
+	BlockName        -> NUMIXING, 
+    	OrderBlock       -> 1, 
+    	Value            -> 1.0,
+	ComplexParameter -> False,
+	TeX              -> Subscript[V,eN1],
+    	Description      -> "Mixing between ve flavor/gauge state and N1 mass state"
+	},
+
+	VeN2 == {
+    	ParameterType    -> External, 
+	BlockName        -> NUMIXING, 
+    	OrderBlock       -> 2, 
+    	Value            -> 0.0,
+	ComplexParameter -> False,
+	TeX              -> Subscript[V,eN2],
+    	Description      -> "Mixing between ve flavor/gauge state and N2 mass state"
+	},
+
+	VeN3 == {
+    	ParameterType    -> External, 
+	BlockName        -> NUMIXING, 
+    	OrderBlock       -> 3, 
+    	Value            -> 0.0,
+	ComplexParameter -> False,
+	TeX              -> Subscript[V,eN3],
+    	Description      -> "Mixing between ve flavor/gauge state and N3 mass state"
+	},
+
+	VmuN1 == {
+    	ParameterType    -> External, 
+	BlockName        -> NUMIXING, 
+    	OrderBlock       -> 4, 
+    	Value            -> 0.0,
+	ComplexParameter -> False,
+	TeX              -> Subscript[V,muN1],
+    	Description      -> "Mixing between vm flavor/gauge state and N1 mass state"
+	},
+
+	VmuN2 == {
+    	ParameterType    -> External, 
+	BlockName        -> NUMIXING, 
+    	OrderBlock       -> 5, 
+    	Value            -> 1.0,
+	ComplexParameter -> False,
+	TeX              -> Subscript[V,muN2],
+    	Description      -> "Mixing between vm flavor/gauge state and N2 mass state"
+	},
+
+	VmuN3 == {
+    	ParameterType    -> External, 
+	BlockName        -> NUMIXING, 
+    	OrderBlock       -> 6, 
+    	Value            -> 0.0,
+	ComplexParameter -> False,
+	TeX              -> Subscript[V,muN3],
+    	Description      -> "Mixing between vm flavor/gauge state and N3 mass state"
+	},
+
+	VtaN1 == {
+    	ParameterType    -> External, 
+	BlockName        -> NUMIXING, 
+    	OrderBlock       -> 7, 
+    	Value            -> 0.0,
+	ComplexParameter -> False,
+	TeX              -> Subscript[V,taN1],
+    	Description      -> "Mixing between vt flavor/gauge state and N1 mass state"
+	},
+
+	VtaN2 == {
+    	ParameterType    -> External, 
+	BlockName        -> NUMIXING, 
+    	OrderBlock       -> 8, 
+    	Value            -> 0.0,
+	ComplexParameter -> False,
+	TeX              -> Subscript[V,taN2],
+    	Description      -> "Mixing between vt flavor/gauge state and N2 mass state"
+	},
+
+	VtaN3 == {
+    	ParameterType    -> External, 
+	BlockName        -> NUMIXING, 
+    	OrderBlock       -> 9, 
+    	Value            -> 1.0,
+	ComplexParameter -> False,
+	TeX              -> Subscript[V,taN3],
+    	Description      -> "Mixing between vt flavor/gauge state and N3 mass state"
+	},
+
+        VeN4 == {
+    	ParameterType    -> External, 
+	BlockName        -> NUMIXING, 
+    	OrderBlock       -> 10, 
+    	Value            -> 1.0,
+	ComplexParameter -> False,
+	TeX              -> Subscript[V,eN4],
+    	Description      -> "Mixing between ve flavor/gauge state and N4 mass state"
+	},
+
+	VeN5 == {
+    	ParameterType    -> External, 
+	BlockName        -> NUMIXING, 
+    	OrderBlock       -> 11, 
+    	Value            -> 0.0,
+	ComplexParameter -> False,
+	TeX              -> Subscript[V,eN5],
+    	Description      -> "Mixing between ve flavor/gauge state and N5 mass state"
+	},
+
+	VeN6 == {
+    	ParameterType    -> External, 
+	BlockName        -> NUMIXING, 
+    	OrderBlock       -> 12, 
+    	Value            -> 0.0,
+	ComplexParameter -> False,
+	TeX              -> Subscript[V,eN6],
+    	Description      -> "Mixing between ve flavor/gauge state and N6 mass state"
+	},
+
+	VmuN4 == {
+    	ParameterType    -> External, 
+	BlockName        -> NUMIXING, 
+    	OrderBlock       -> 13, 
+    	Value            -> 0.0,
+	ComplexParameter -> False,
+	TeX              -> Subscript[V,muN4],
+    	Description      -> "Mixing between vm flavor/gauge state and N4 mass state"
+	},
+
+	VmuN5 == {
+    	ParameterType    -> External, 
+	BlockName        -> NUMIXING, 
+    	OrderBlock       -> 14, 
+    	Value            -> 1.0,
+	ComplexParameter -> False,
+	TeX              -> Subscript[V,muN5],
+    	Description      -> "Mixing between vm flavor/gauge state and N5 mass state"
+	},
+
+	VmuN6 == {
+    	ParameterType    -> External, 
+	BlockName        -> NUMIXING, 
+    	OrderBlock       -> 15, 
+    	Value            -> 0.0,
+	ComplexParameter -> False,
+	TeX              -> Subscript[V,muN6],
+    	Description      -> "Mixing between vm flavor/gauge state and N6 mass state"
+	},
+
+	VtaN4 == {
+    	ParameterType    -> External, 
+	BlockName        -> NUMIXING, 
+    	OrderBlock       -> 16, 
+    	Value            -> 0.0,
+	ComplexParameter -> False,
+	TeX              -> Subscript[V,taN4],
+    	Description      -> "Mixing between vt flavor/gauge state and N4 mass state"
+	},
+
+	VtaN5 == {
+    	ParameterType    -> External, 
+	BlockName        -> NUMIXING, 
+    	OrderBlock       -> 17, 
+    	Value            -> 0.0,
+	ComplexParameter -> False,
+	TeX              -> Subscript[V,taN5],
+    	Description      -> "Mixing between vt flavor/gauge state and N5 mass state"
+	},
+
+	VtaN6 == {
+    	ParameterType    -> External, 
+	BlockName        -> NUMIXING, 
+    	OrderBlock       -> 18, 
+    	Value            -> 1.0,
+	ComplexParameter -> False,
+	TeX              -> Subscript[V,taN6],
+    	Description      -> "Mixing between vt flavor/gauge state and N6 mass state"
+	},
+
+        
+(* Heavy Gauge Neutrino mixing with mass states *)
+
+
+
+
+(*NL*)
+
+(* NL mixing with light mass states*)
+
+
+
+
+	VLenu1 == {
+    	ParameterType    -> External, 
+	BlockName        -> NLMIXING, 
+    	OrderBlock       -> 19, 
+    	Value            -> 1.0,
+	ComplexParameter -> False,
+	TeX              -> Subscript[V,Lenu1],
+    	Description      -> "Mixing between NLe flavor/gauge state and nu1 mass state"
+	},
+
+	VLenu2 == {
+    	ParameterType    -> External, 
+	BlockName        -> NLMIXING, 
+    	OrderBlock       -> 20, 
+    	Value            -> 0.0,
+	ComplexParameter -> False,
+	TeX              -> Subscript[V,Lenu2],
+    	Description      -> "Mixing between NLe flavor/gauge state and nu2 mass state"
+	},
+
+	VLenu3 == {
+    	ParameterType    -> External, 
+	BlockName        -> NLMIXING, 
+    	OrderBlock       -> 21, 
+    	Value            -> 0.0,
+	ComplexParameter -> False,
+	TeX              -> Subscript[V,Lenu3],
+    	Description      -> "Mixing between NLe flavor/gauge state and nu3 mass state"
+	},
+
+	VLmunu1 == {
+    	ParameterType    -> External, 
+	BlockName        -> NLMIXING, 
+    	OrderBlock       -> 22, 
+    	Value            -> 1.0,
+	ComplexParameter -> False,
+	TeX              -> Subscript[V,Lmunu1],
+    	Description      -> "Mixing between NLmu flavor/gauge state and nu1 mass state"
+	},
+
+	VLmunu2 == {
+    	ParameterType    -> External, 
+	BlockName        -> NLMIXING, 
+    	OrderBlock       -> 23, 
+    	Value            -> 0.0,
+	ComplexParameter -> False,
+	TeX              -> Subscript[V,Lmunu2],
+    	Description      -> "Mixing between NLmu flavor/gauge state and nu2 mass state"
+	},
+
+	VLmunu3 == {
+    	ParameterType    -> External, 
+	BlockName        -> NLMIXING, 
+    	OrderBlock       -> 24, 
+    	Value            -> 0.0,
+	ComplexParameter -> False,
+	TeX              -> Subscript[V,Lmunu3],
+    	Description      -> "Mixing between NLmu flavor/gauge state and nu3 mass state"
+	},
+
+	VLtnu1 == {
+    	ParameterType    -> External, 
+	BlockName        -> NLMIXING, 
+    	OrderBlock       -> 25, 
+    	Value            -> 1.0,
+	ComplexParameter -> False,
+	TeX              -> Subscript[V,Ltnu1],
+    	Description      -> "Mixing between NLt flavor/gauge state and nu1 mass state"
+	},
+
+	VLtnu2 == {
+    	ParameterType    -> External, 
+	BlockName        -> NLMIXING, 
+    	OrderBlock       -> 26, 
+    	Value            -> 0.0,
+	ComplexParameter -> False,
+	TeX              -> Subscript[V,Ltnu2],
+    	Description      -> "Mixing between NLt flavor/gauge state and nu2 mass state"
+	},
+
+	VLtnu3 == {
+    	ParameterType    -> External, 
+	BlockName        -> NLMIXING, 
+    	OrderBlock       -> 27, 
+    	Value            -> 0.0,
+	ComplexParameter -> False,
+	TeX              -> Subscript[V,Ltnu3],
+    	Description      -> "Mixing between NLt flavor/gauge state and nu3 mass state"
+	},
+
+
+
+
+(* NL mixing with mass states*)
+
+
+	VLeN1 == {
+    	ParameterType    -> External, 
+	BlockName        -> NLMIXING, 
+    	OrderBlock       -> 1, 
+    	Value            -> 1.0,
+	ComplexParameter -> False,
+	TeX              -> Subscript[V,LeN1],
+    	Description      -> "Mixing between NLe flavor/gauge state and N1 mass state"
+	},
+
+	VLeN2 == {
+    	ParameterType    -> External, 
+	BlockName        -> NLMIXING, 
+    	OrderBlock       -> 2, 
+    	Value            -> 0.0,
+	ComplexParameter -> False,
+	TeX              -> Subscript[V,LeN2],
+    	Description      -> "Mixing between NLe flavor/gauge state and N2 mass state"
+	},
+
+	VLeN3 == {
+    	ParameterType    -> External, 
+	BlockName        -> NLMIXING, 
+    	OrderBlock       -> 3, 
+    	Value            -> 0.0,
+	ComplexParameter -> False,
+	TeX              -> Subscript[V,LeN3],
+    	Description      -> "Mixing between NLe flavor/gauge state and N3 mass state"
+	},
+
+	VLeN4 == {
+    	ParameterType    -> External, 
+	BlockName        -> NLMIXING, 
+    	OrderBlock       -> 4, 
+    	Value            -> 1.0,
+	ComplexParameter -> False,
+	TeX              -> Subscript[V,LeN4],
+    	Description      -> "Mixing between NLe flavor/gauge state and N4 mass state"
+	},
+
+	VLeN5 == {
+    	ParameterType    -> External, 
+	BlockName        -> NLMIXING, 
+    	OrderBlock       -> 5, 
+    	Value            -> 0.0,
+	ComplexParameter -> False,
+	TeX              -> Subscript[V,LeN5],
+    	Description      -> "Mixing between NLe flavor/gauge state and N5 mass state"
+	},
+
+	VLeN6 == {
+    	ParameterType    -> External, 
+	BlockName        -> NLMIXING, 
+    	OrderBlock       -> 6, 
+    	Value            -> 0.0,
+	ComplexParameter -> False,
+	TeX              -> Subscript[V,LeN6],
+    	Description      -> "Mixing between NLe flavor/gauge state and N6 mass state"
+	},
+
+
+	VLmN1 == {
+    	ParameterType    -> External, 
+	BlockName        -> NLMIXING, 
+    	OrderBlock       -> 7, 
+    	Value            -> 1.0,
+	ComplexParameter -> False,
+	TeX              -> Subscript[V,LemN1],
+    	Description      -> "Mixing between NLm flavor/gauge state and N1 mass state"
+	},
+
+	VLmN2 == {
+    	ParameterType    -> External, 
+	BlockName        -> NLMIXING, 
+    	OrderBlock       -> 8, 
+    	Value            -> 0.0,
+	ComplexParameter -> False,
+	TeX              -> Subscript[V,LmN2],
+    	Description      -> "Mixing between NLm flavor/gauge state and N2 mass state"
+	},
+
+	VLmN3 == {
+    	ParameterType    -> External, 
+	BlockName        -> NLMIXING, 
+    	OrderBlock       -> 9, 
+    	Value            -> 0.0,
+	ComplexParameter -> False,
+	TeX              -> Subscript[V,LmN3],
+    	Description      -> "Mixing between NLm flavor/gauge state and N3 mass state"
+	},
+
+	VLmN4 == {
+    	ParameterType    -> External, 
+	BlockName        -> NLMIXING, 
+    	OrderBlock       -> 10, 
+    	Value            -> 1.0,
+	ComplexParameter -> False,
+	TeX              -> Subscript[V,LmN4],
+    	Description      -> "Mixing between NLm flavor/gauge state and N4 mass state"
+	},
+
+	VLmN5 == {
+    	ParameterType    -> External, 
+	BlockName        -> NLMIXING, 
+    	OrderBlock       -> 11, 
+    	Value            -> 0.0,
+	ComplexParameter -> False,
+	TeX              -> Subscript[V,LmN5],
+    	Description      -> "Mixing between NLm flavor/gauge state and N5 mass state"
+	},
+
+	VLmN6 == {
+    	ParameterType    -> External, 
+	BlockName        -> NLMIXING, 
+    	OrderBlock       -> 12, 
+    	Value            -> 0.0,
+	ComplexParameter -> False,
+	TeX              -> Subscript[V,LmN6],
+    	Description      -> "Mixing between NLm flavor/gauge state and N6 mass state"
+	},
+
+	VLtN1 == {
+    	ParameterType    -> External, 
+	BlockName        -> NLMIXING, 
+    	OrderBlock       -> 13, 
+    	Value            -> 1.0,
+	ComplexParameter -> False,
+	TeX              -> Subscript[V,LtN1],
+    	Description      -> "Mixing between NLt flavor/gauge state and N1 mass state"
+	},
+
+	VLtN2 == {
+    	ParameterType    -> External, 
+	BlockName        -> NLMIXING, 
+    	OrderBlock       -> 14, 
+    	Value            -> 0.0,
+	ComplexParameter -> False,
+	TeX              -> Subscript[V,LtN2],
+    	Description      -> "Mixing between NLt flavor/gauge state and N2 mass state"
+	},
+
+	VLtN3 == {
+    	ParameterType    -> External, 
+	BlockName        -> NLMIXING, 
+    	OrderBlock       -> 15, 
+    	Value            -> 0.0,
+	ComplexParameter -> False,
+	TeX              -> Subscript[V,LtN3],
+    	Description      -> "Mixing between NLt flavor/gauge state and N3 mass state"
+	},
+
+	VLtN4 == {
+    	ParameterType    -> External, 
+	BlockName        -> NLMIXING, 
+    	OrderBlock       -> 16, 
+    	Value            -> 1.0,
+	ComplexParameter -> False,
+	TeX              -> Subscript[V,LtN4],
+    	Description      -> "Mixing between NLt flavor/gauge state and N4 mass state"
+	},
+
+	VLtN5 == {
+    	ParameterType    -> External, 
+	BlockName        -> NLMIXING, 
+    	OrderBlock       -> 17, 
+    	Value            -> 0.0,
+	ComplexParameter -> False,
+	TeX              -> Subscript[V,LtN5],
+    	Description      -> "Mixing between NLt flavor/gauge state and N5 mass state"
+	},
+
+	VLtN6 == {
+    	ParameterType    -> External, 
+	BlockName        -> NLMIXING, 
+    	OrderBlock       -> 18, 
+    	Value            -> 0.0,
+	ComplexParameter -> False,
+	TeX              -> Subscript[V,LtN6],
+    	Description      -> "Mixing between NLt flavor/gauge state and N6 mass state"
+	},
+
+
+(* NR *)
+
+(* NR mixing with light mass states *)
+
+
+
+	VRenu1 == {
+    	ParameterType    -> External, 
+	BlockName        -> NRMIXING, 
+    	OrderBlock       -> 19, 
+    	Value            -> 1.0,
+	ComplexParameter -> False,
+	TeX              -> Subscript[V,Renu1],
+    	Description      -> "Mixing between NRe flavor/gauge state and nu1 mass state"
+	},
+
+	VRenu2 == {
+    	ParameterType    -> External, 
+	BlockName        -> NRMIXING, 
+    	OrderBlock       -> 20, 
+    	Value            -> 0.0,
+	ComplexParameter -> False,
+	TeX              -> Subscript[V,Renu2],
+    	Description      -> "Mixing between NRe flavor/gauge state and nu2 mass state"
+	},
+
+	VRenu3 == {
+    	ParameterType    -> External, 
+	BlockName        -> NRMIXING, 
+    	OrderBlock       -> 21, 
+    	Value            -> 0.0,
+	ComplexParameter -> False,
+	TeX              -> Subscript[V,Renu3],
+    	Description      -> "Mixing between NRe flavor/gauge state and nu3 mass state"
+	},
+
+	VRmunu1 == {
+    	ParameterType    -> External, 
+	BlockName        -> NRMIXING, 
+    	OrderBlock       -> 22, 
+    	Value            -> 1.0,
+	ComplexParameter -> False,
+	TeX              -> Subscript[V,Rmunu1],
+    	Description      -> "Mixing between NRmu flavor/gauge state and nu1 mass state"
+	},
+
+	VRmunu2 == {
+    	ParameterType    -> External, 
+	BlockName        -> NRMIXING, 
+    	OrderBlock       -> 23, 
+    	Value            -> 0.0,
+	ComplexParameter -> False,
+	TeX              -> Subscript[V,Rmunu2],
+    	Description      -> "Mixing between NRmu flavor/gauge state and nu2 mass state"
+	},
+
+	VRmunu3 == {
+    	ParameterType    -> External, 
+	BlockName        -> NRMIXING, 
+    	OrderBlock       -> 24, 
+    	Value            -> 0.0,
+	ComplexParameter -> False,
+	TeX              -> Subscript[V,Rmunu3],
+    	Description      -> "Mixing between NRmu flavor/gauge state and nu3 mass state"
+	},
+
+	VRtnu1 == {
+    	ParameterType    -> External, 
+	BlockName        -> NRMIXING, 
+    	OrderBlock       -> 25, 
+    	Value            -> 1.0,
+	ComplexParameter -> False,
+	TeX              -> Subscript[V,Rtnu1],
+    	Description      -> "Mixing between NRt flavor/gauge state and nu1 mass state"
+	},
+
+	VRtnu2 == {
+    	ParameterType    -> External, 
+	BlockName        -> NRMIXING, 
+    	OrderBlock       -> 26, 
+    	Value            -> 0.0,
+	ComplexParameter -> False,
+	TeX              -> Subscript[V,Rtnu2],
+    	Description      -> "Mixing between NRt flavor/gauge state and nu2 mass state"
+	},
+
+	VRtnu3 == {
+    	ParameterType    -> External, 
+	BlockName        -> NRMIXING, 
+    	OrderBlock       -> 27, 
+    	Value            -> 0.0,
+	ComplexParameter -> False,
+	TeX              -> Subscript[V,Rtnu3],
+    	Description      -> "Mixing between NRt flavor/gauge state and nu3 mass state"
+	},
+
+
+
+
+(* NR mixing with heavy mass states *)
+
+
+
+	VReN1 == {
+    	ParameterType    -> External, 
+	BlockName        -> NRMIXING, 
+    	OrderBlock       -> 1, 
+    	Value            -> 1.0,
+	ComplexParameter -> False,
+	TeX              -> Subscript[V,ReN1],
+    	Description      -> "Mixing between NRe flavor/gauge state and N1 mass state"
+	},
+
+	VReN2 == {
+    	ParameterType    -> External, 
+	BlockName        -> NRMIXING, 
+    	OrderBlock       -> 2, 
+    	Value            -> 0.0,
+	ComplexParameter -> False,
+	TeX              -> Subscript[V,ReN2],
+    	Description      -> "Mixing between NRe flavor/gauge state and N2 mass state"
+	},
+
+	VReN3 == {
+    	ParameterType    -> External, 
+	BlockName        -> NRMIXING, 
+    	OrderBlock       -> 3, 
+    	Value            -> 0.0,
+	ComplexParameter -> False,
+	TeX              -> Subscript[V,ReN3],
+    	Description      -> "Mixing between NRe flavor/gauge state and N3 mass state"
+	},
+
+	VReN4 == {
+    	ParameterType    -> External, 
+	BlockName        -> NRMIXING, 
+    	OrderBlock       -> 4, 
+    	Value            -> 1.0,
+	ComplexParameter -> False,
+	TeX              -> Subscript[V,ReN4],
+    	Description      -> "Mixing between NRe flavor/gauge state and N4 mass state"
+	},
+
+	VReN5 == {
+    	ParameterType    -> External, 
+	BlockName        -> NRMIXING, 
+    	OrderBlock       -> 5, 
+    	Value            -> 0.0,
+	ComplexParameter -> False,
+	TeX              -> Subscript[V,ReN5],
+    	Description      -> "Mixing between NRe flavor/gauge state and N5 mass state"
+	},
+
+	VReN6 == {
+    	ParameterType    -> External, 
+	BlockName        -> NRMIXING, 
+    	OrderBlock       -> 6, 
+    	Value            -> 0.0,
+	ComplexParameter -> False,
+	TeX              -> Subscript[V,ReN6],
+    	Description      -> "Mixing between NRe flavor/gauge state and N6 mass state"
+	},
+
+
+	VRmN1 == {
+    	ParameterType    -> External, 
+	BlockName        -> NRMIXING, 
+    	OrderBlock       -> 7, 
+    	Value            -> 1.0,
+	ComplexParameter -> False,
+	TeX              -> Subscript[V,RemN1],
+    	Description      -> "Mixing between NRm flavor/gauge state and N1 mass state"
+	},
+
+	VRmN2 == {
+    	ParameterType    -> External, 
+	BlockName        -> NRMIXING, 
+    	OrderBlock       -> 8, 
+    	Value            -> 0.0,
+	ComplexParameter -> False,
+	TeX              -> Subscript[V,RmN2],
+    	Description      -> "Mixing between NRm flavor/gauge state and N2 mass state"
+	},
+
+	VRmN3 == {
+    	ParameterType    -> External, 
+	BlockName        -> NRMIXING, 
+    	OrderBlock       -> 9, 
+    	Value            -> 0.0,
+	ComplexParameter -> False,
+	TeX              -> Subscript[V,RmN3],
+    	Description      -> "Mixing between NRm flavor/gauge state and N3 mass state"
+	},
+
+	VRmN4 == {
+    	ParameterType    -> External, 
+	BlockName        -> NRMIXING, 
+    	OrderBlock       -> 10, 
+    	Value            -> 1.0,
+	ComplexParameter -> False,
+	TeX              -> Subscript[V,RmN4],
+    	Description      -> "Mixing between NRm flavor/gauge state and N4 mass state"
+	},
+
+	VRmN5 == {
+    	ParameterType    -> External, 
+	BlockName        -> NRMIXING, 
+    	OrderBlock       -> 11, 
+    	Value            -> 0.0,
+	ComplexParameter -> False,
+	TeX              -> Subscript[V,RmN5],
+    	Description      -> "Mixing between NRm flavor/gauge state and N5 mass state"
+	},
+
+	VRmN6 == {
+    	ParameterType    -> External, 
+	BlockName        -> NRMIXING, 
+    	OrderBlock       -> 12, 
+    	Value            -> 0.0,
+	ComplexParameter -> False,
+	TeX              -> Subscript[V,RmN6],
+    	Description      -> "Mixing between NRm flavor/gauge state and N6 mass state"
+	},
+
+	VRtN1 == {
+    	ParameterType    -> External, 
+	BlockName        -> NRMIXING, 
+    	OrderBlock       -> 13, 
+    	Value            -> 1.0,
+	ComplexParameter -> False,
+	TeX              -> Subscript[V,RtN1],
+    	Description      -> "Mixing between NRt flavor/gauge state and N1 mass state"
+	},
+
+	VRtN2 == {
+    	ParameterType    -> External, 
+	BlockName        -> NRMIXING, 
+    	OrderBlock       -> 14, 
+    	Value            -> 0.0,
+	ComplexParameter -> False,
+	TeX              -> Subscript[V,RtN2],
+    	Description      -> "Mixing between NRt flavor/gauge state and N2 mass state"
+	},
+
+	VRtN3 == {
+    	ParameterType    -> External, 
+	BlockName        -> NRMIXING, 
+    	OrderBlock       -> 15, 
+    	Value            -> 0.0,
+	ComplexParameter -> False,
+	TeX              -> Subscript[V,RtN3],
+    	Description      -> "Mixing between NRt flavor/gauge state and N3 mass state"
+	},
+
+	VRtN4 == {
+    	ParameterType    -> External, 
+	BlockName        -> NRMIXING, 
+    	OrderBlock       -> 16, 
+    	Value            -> 1.0,
+	ComplexParameter -> False,
+	TeX              -> Subscript[V,RtN4],
+    	Description      -> "Mixing between NRt flavor/gauge state and N4 mass state"
+	},
+
+	VRtN5 == {
+    	ParameterType    -> External, 
+	BlockName        -> NRMIXING, 
+    	OrderBlock       -> 17, 
+    	Value            -> 0.0,
+	ComplexParameter -> False,
+	TeX              -> Subscript[V,RtN5],
+    	Description      -> "Mixing between NRt flavor/gauge state and N5 mass state"
+	},
+
+	VRtN6 == {
+    	ParameterType    -> External, 
+	BlockName        -> NRMIXING, 
+    	OrderBlock       -> 18, 
+    	Value            -> 0.0,
+	ComplexParameter -> False,
+	TeX              -> Subscript[V,RtN6],
+    	Description      -> "Mixing between NRt flavor/gauge state and N6 mass state"
+	},
+
+
+	(* Internal Parameters *)
+	gN   == {
+		ParameterType	 -> Internal,
+		Definitions      -> {gN->ee/sw},
+		InteractionOrder -> {NP,1},
+		TeX		 -> Subscript[g,N]}
+};
+
+M$InteractionOrderHierarchy = {
+	{QCD,1},
+	{QED,2}
+};
+
+
+(* Particle classes *)
+
+
+M$ClassesDescription = {
+	
+
+(* Flavour eigenstates*)
+
+	F[150] == {
+		ClassName	-> nue,
+		SelfConjugate	-> True,
+		Mass		-> 0,
+		Width		-> 0,	
+		PropagatorLabel	-> "nue",
+		PropagatorType  -> Straight,
+		PropagatorArrow -> False,
+		ParticleName    -> "nue",
+		PDG             -> {140},
+		FullName        -> "nue"},
+
+	(*F[151] == {
+		ClassName	-> numu,
+		SelfConjugate	-> True,
+		Mass		-> 0,
+		Width		-> 0,	
+		PropagatorLabel	-> "numu",
+		PropagatorType  -> Straight,
+		PropagatorArrow -> False,
+		ParticleName    -> "numu",
+		PDG             -> {141},
+		FullName        -> "numu"},
+
+	F[152] == {
+		ClassName	-> nut,
+		SelfConjugate	-> True,
+		Mass		-> 0,
+		Width		-> 0,	
+		PropagatorLabel	-> "nut",
+		PropagatorType  -> Straight,
+		PropagatorArrow -> False,
+		ParticleName    -> "nut",
+		PDG             -> {142},
+		FullName        -> "nut"},
+
+	F[153] == {
+		ClassName	-> NLe,
+		SelfConjugate	-> True,
+		Mass		-> 0,
+		Width		-> 0,	
+		PropagatorLabel	-> "NLe",
+		PropagatorType  -> Straight,
+		PropagatorArrow -> False,
+		ParticleName    -> "NLe",
+		PDG             -> {143},
+		FullName        -> "NLe"},
+
+	
+	F[154] == {
+		ClassName	-> NLmu,
+		SelfConjugate	-> True,
+		Mass		-> 0,
+		Width		-> 0,	
+		PropagatorLabel	-> "NLmu",
+		PropagatorType  -> Straight,
+		PropagatorArrow -> False,
+		ParticleName    -> "NLmu",
+		PDG             -> {144},
+		FullName        -> "NLmu"},
+
+	F[155] == {
+		ClassName	-> NLt,
+		SelfConjugate	-> True,
+		Mass		-> 0,
+		Width		-> 0,	
+		PropagatorLabel	-> "NLt",
+		PropagatorType  -> Straight,
+		PropagatorArrow -> False,
+		ParticleName    -> "NLt",
+		PDG             -> {145},
+		FullName        -> "NLt"},
+
+	F[156] == {
+		ClassName	-> NRe,
+		SelfConjugate	-> True,
+		Mass		-> 0,
+		Width		-> 0,	
+		PropagatorLabel	-> "NRe",
+		PropagatorType  -> Straight,
+		PropagatorArrow -> False,
+		ParticleName    -> "NRe",
+		PDG             -> {146},
+		FullName        -> "NRe"},
+
+	
+	F[157] == {
+		ClassName	-> NRmu,
+		SelfConjugate	-> True,
+		Mass		-> 0,
+		Width		-> 0,	
+		PropagatorLabel	-> "NRmu",
+		PropagatorType  -> Straight,
+		PropagatorArrow -> False,
+		ParticleName    -> "NRmu",
+		PDG             -> {147},
+		FullName        -> "NRmu"},
+
+	F[158] == {
+		ClassName	-> NRt,
+		SelfConjugate	-> True,
+		Mass		-> 0,
+		Width		-> 0,	
+		PropagatorLabel	-> "NRt",
+		PropagatorType  -> Straight,
+		PropagatorArrow -> False,
+		ParticleName    -> "NRt",
+		PDG             -> {148},
+		FullName        -> "NRt"},*)
+	
+(* Heavy Mass Eigenstates*)
+
+
+	F[131] == {
+		ClassName	-> N1,
+		SelfConjugate	-> True,
+		Mass		-> {mN1,300.},
+		Width		-> {WN1,0.303},	
+		PropagatorLabel	-> "N1",
+		PropagatorType  -> Straight,
+		PropagatorArrow -> False,
+		ParticleName    -> "N1",
+		PDG             -> {9900012},
+		FullName        -> "N1"},
+
+	F[132] == {
+		ClassName	-> N2,
+		SelfConjugate	-> True,
+		Mass		-> {mN2,500.},
+		Width		-> {WN2,1.50},	
+		PropagatorLabel	-> "N2",
+		PropagatorType  -> Straight,
+		PropagatorArrow -> False,
+		ParticleName    -> "N2",
+		PDG             -> {9900014},
+		FullName        -> "N2"},
+
+	F[133] == {
+		ClassName	-> N3,
+		SelfConjugate	-> True,
+		Mass		-> {mN3,1000.},
+		Width		-> {WN3,12.3},	
+		PropagatorLabel	-> "N3",
+		PropagatorType  -> Straight,
+		PropagatorArrow -> False,
+		ParticleName    -> "N3",
+		PDG             -> {9900016},
+		FullName        -> "N3"},
+
+     
+	F[134] == {
+		ClassName	-> N4,
+		SelfConjugate	-> True,
+		Mass		-> {mN4,301.},
+		Width		-> {WN4,0.303},	
+		PropagatorLabel	-> "N4",
+		PropagatorType  -> Straight,
+		PropagatorArrow -> False,
+		ParticleName    -> "N4",
+		PDG             -> {9900060},
+		FullName        -> "N4"},
+
+	F[135] == {
+		ClassName	-> N5,
+		SelfConjugate	-> True,
+		Mass		-> {mN5,501.},
+		Width		-> {WN5,1.50},	
+		PropagatorLabel	-> "N5",
+		PropagatorType  -> Straight,
+		PropagatorArrow -> False,
+		ParticleName    -> "N5",
+		PDG             -> {9900062},
+		FullName        -> "N5"},
+
+	F[136] == {
+		ClassName	-> N6,
+		SelfConjugate	-> True,
+		Mass		-> {mN6,1001.},
+		Width		-> {WN6,12.3},	
+		PropagatorLabel	-> "N6",
+		PropagatorType  -> Straight,
+		PropagatorArrow -> False,
+		ParticleName    -> "N6",
+		PDG             -> {9900064},
+		FullName        -> "N6"},
+
+
+
+(*Light Mass Eigenstates*)
+
+	F[137] == {
+		ClassName	-> nu1,
+		SelfConjugate	-> True,
+		Mass		-> {mnu1,302.},
+		Width		-> {Wnu1,0.303},	
+		PropagatorLabel	-> "nu1",
+		PropagatorType  -> Straight,
+		PropagatorArrow -> False,
+		ParticleName    -> "nu1",
+		PDG             -> {9900080},
+		FullName        -> "nu1"},
+
+	F[138] == {
+		ClassName	-> nu2,
+		SelfConjugate	-> True,
+		Mass		-> {mnu2,503.},
+		Width		-> {Wnu2,1.50},	
+		PropagatorLabel	-> "nu2",
+		PropagatorType  -> Straight,
+		PropagatorArrow -> False,
+		ParticleName    -> "nu2",
+		PDG             -> {9900082},
+		FullName        -> "nu2"},
+
+	F[139] == {
+		ClassName	-> nu3,
+		SelfConjugate	-> True,
+		Mass		-> {mnu3,1004.},
+		Width		-> {Wnu3,12.3},	
+		PropagatorLabel	-> "nu3",
+		PropagatorType  -> Straight,
+		PropagatorArrow -> False,
+		ParticleName    -> "nu3",
+		PDG             -> {9900084},
+		FullName        -> "nu3"},
+
+        S[9000001] == {
+        	ClassName -> sR,
+        	SelfConjugate -> True,
+        	PDG -> 9000001,
+        	Mass -> {mS,1000},
+        	Width -> 0,
+        	Charge -> 0,
+        	Description -> "Scalar mass eigenstate 1"
+    },
+        S[9000002] == {
+        	ClassName -> sI,
+        	SelfConjugate -> True,
+        	PDG -> 9000002,
+        	Mass -> {mI,50},
+        	Width -> 0,
+        	Charge -> 0,
+        	Description -> "Scalar mass eigenstate 2"
+    },
+
+	S[9000003] == {
+        	ClassName -> sReal,
+        	SelfConjugate -> True,
+        	PDG -> 9000003,
+        	Mass -> {msReal,50},
+        	Width -> 0,
+        	Charge -> 0,
+        	Description -> "Scalar",
+		ParticleName    -> "sReal"}
+
+};
+
+(* ************************** *)
+(* *****   Lagrangian   ***** *)
+(* ************************** *)
+
+
+
+
+defs = {
+    h -> Cos[\[Theta]] H + Sin[\[Theta]] sR,
+    sReal -> -Sin[\[Theta]] H + Cos[\[Theta]] sR
+}
+
+
+defneutrino = {
+
+    nue -> Venu1 nu1 + Venu2 nu2 + Venu3 nu3 + VeN1 N1 + VeN2 N2 + VeN3 N3 + VeN4 N4 + VeN5 N5 + VeN6 N6,
+
+    numu -> Vmunu1 nu1 + Vmunu2 nu2 + Vmunu3 nu3 + VmuN1 N1 + VmuN2 N2 + VmuN3 N3 + VmuN4 N4 + VmuN5 N5 + VmuN6 N6, 
+
+    nut -> Vtnu1 nu1 + Vtnu2 nu2 + Vtnu3 nu3 + VtaN1 N1 + VtaN2 N2 + VtaN3 N3 + VtaN4 N4 + VtaN5 N5 + VtaN6 N6, 
+
+    NLe -> VLenu1 nu1 + VLenu2 nu2 + VLenu3 nu3 + VLeN1 N1 + VLeN2 N2 + VLeN3 N3 + VLeN4 N4 + VLeN5 N5 + VLeN6 N6,
+
+    NLmu -> VLmunu1 nu1 + VLmunu2 nu2 + VLmunu3 nu3 + VLmuN1 N1 + VLmuN2 N2 + VLmuN3 N3 + VLmuN4 N4 + VLmuN5 N5 + VLmuN6 N6,
+
+    NLt -> VLtnu1 nu1 + VLtnu2 nu2 + VLtnu3 nu3 + VLtN1 N1 + VLtN2 N2 + VLtN3 N3 + VLtN4 N4 + VLtN5 N5 + VLtN6 N6,
+
+    NRe -> VRenu1 nu1 + VRenu2 nu2 + VRenu3 nu3 + VReN1 N1 + VReN2 N2 + VReN3 N3 + VReN4 N4 + VReN5 N5 + VReN6 N6,
+
+    NRmu -> VRmunu1 nu1 + VRmunu2 nu2 + VRmunu3 nu3 + VRmuN1 N1 + VRmuN2 N2 + VRmuN3 N3 + VRmuN4 N4 + VRmuN5 N5 + VRmuN6 N6,
+
+    NRt -> VRtnu1 nu1 + VRtnu2 nu2 + VRtnu3 nu3 + VRtN1 N1 + VRtN2 N2 + VRtN3 N3 + VRtN4 N4 + VRtN5 N5 + VRtN6 N6
+
+}
+
+
+LNKin :=   I/2 N1bar[s1].Ga[v,s1,s2].del[N1[s2],v] - 1/2 mN1 N1bar[s1]N1[s1] \
+	+  I/2 N2bar[s1].Ga[v,s1,s2].del[N2[s2],v] - 1/2 mN2 N2bar[s1]N2[s1] \
+	+  I/2 N3bar[s1].Ga[v,s1,s2].del[N3[s2],v] - 1/2 mN3 N3bar[s1]N3[s1] \
+        +  I/2 N4bar[s1].Ga[v,s1,s2].del[N4[s2],v] - 1/2 mN4 N4bar[s1]N4[s1] \
+	+  I/2 N5bar[s1].Ga[v,s1,s2].del[N5[s2],v] - 1/2 mN5 N5bar[s1]N5[s1] \
+	+  I/2 N6bar[s1].Ga[v,s1,s2].del[N6[s2],v] - 1/2 mN6 N6bar[s1]N6[s1] \
+	+  I/2 nu1bar[s1].Ga[v,s1,s2].del[nu1[s2],v] - 1/2 mnu1 nu1bar[s1]nu1[s1] \
+	+  I/2 nu2bar[s1].Ga[v,s1,s2].del[nu2[s2],v] - 1/2 mnu2 nu2bar[s1]nu2[s1] \
+	+  I/2 nu3bar[s1].Ga[v,s1,s2].del[nu3[s2],v] - 1/2 mnu3 nu3bar[s1]nu3[s1] ;
+	(*+ 1/2 del[sR,mu]^2 - 1/2 mS^2 sR^2 + 1/2 del[sI,mu]^2 - 1/2 mI^2 sI^2;*)
+
+
+(*Charged current*)
+
+
+(*LNCCbare :=  gN/Sqrt[2] * (nuebar.W[m].ProjM[m].e + numubar.W[m].ProjM[m].mu + nutbar.W[m].ProjM[m].ta);
+
+LNCC := LNCCbare + HC[LNCCbare];*)
+
+
+(*Neutral current*)
+
+
+LNNCBare := 1/2 * gN/cw * (nuebar.Z[m].ProjM[m].nue + numubar.Z[m].ProjM[m].numu + nutbar.Z[m].ProjM[m].nut);
+
+
+LNNC := LNNCBare + HC[LNNCBare];
+
+
+(*Neutrino Interaction*)
+
+
+LScalarbare := -Ynu * (nuebar.h.NRe + numubar.h.NRmu + nutbar.h.NRt) - lamN * ( NLebar.(sReal + I*sI).NRe + NLmubar.(sReal + I*sI).NRmu + 
+		
+		NLtbar.(sReal + I*sI).NRt ) - lamL/2 * ( NLebar.(sReal + I*sI).NLeC[s1] + NLmubar.(sReal + I*sI).NLmuC[s1] + NLtbar.(sReal + 		
+
+		I*sI).NLtC[s1]) -lamR/2 * ( NRebar.(sReal + I*sI).NReC[s1] + NRmubar.(sReal + I*sI).NRmuC[s1] + NRtbar.(sReal + 		
+
+		I*sI).NRtC[s1]);
+
+LScalar := LScalarbare + HC[LScalarbare];
+
+
+
+
+LInt = (h^4 \[Lambda]h)/4 + h^3 vH \[Lambda]h + sI^2 ((h^2 \[Lambda]P)/4 + (h vH \[Lambda]P)/2) 	+1/4 sReal^4 (2 \[Lambda]1 + \[Lambda]S) + 1/4 sI^4 (2 \[Lambda]1+ \[Lambda]S) + sReal^3 vS (2 \[Lambda]1 + \[Lambda]S) + sReal^2 ((h^2 \[Lambda]P)/4 + (h vH \[Lambda]P)/2 -  1/2 sI^2  (6 \[Lambda]1 - \[Lambda]S)) + 
+        sReal (1/2 h^2 vS \[Lambda]P - sI^2 vS (6 \[Lambda]1 - \[Lambda]S)); 
+
+
+
+
+(* Full N Lagrangian *)
+LN:= (LNKin (*+ LNCC*) + LNNC + LScalar + LInt) /. defs /. defneutrino
+
+(* Combine Lagrangian *)
+LFull := LSM + LN;
+
+
+
+
+
+(* Backup*)
+
+
+
+
+(* Neutral Current *)
+(*LNNCBare :=   1/2 * gN/cw *(  VeN1 * N1bar.Z[m].ProjM[m].ve	\
+           	  	   + VmuN1 * N1bar.Z[m].ProjM[m].vm	\
+           		   + VtaN1 * N1bar.Z[m].ProjM[m].vt )	\
+	    + 1/2 * gN/cw *(  VeN2 * N2bar.Z[m].ProjM[m].ve	\
+           	  	   + VmuN2 * N2bar.Z[m].ProjM[m].vm	\
+           		   + VtaN2 * N2bar.Z[m].ProjM[m].vt )	\
+	    + 1/2 * gN/cw *(  VeN3 * N3bar.Z[m].ProjM[m].ve	\
+           	  	   + VmuN3 * N3bar.Z[m].ProjM[m].vm	\
+           		   + VtaN3 * N3bar.Z[m].ProjM[m].vt )   \
+            +1/2 * gN/cw  *(  VeN4 * N4bar.Z[m].ProjM[m].ve	\
+           	  	   + VmuN4 * N4bar.Z[m].ProjM[m].vm	\
+           		   + VtaN4 * N4bar.Z[m].ProjM[m].vt )	\
+	    + 1/2 * gN/cw *(  VeN5 * N5bar.Z[m].ProjM[m].ve	\
+           	  	   + VmuN5 * N5bar.Z[m].ProjM[m].vm	\
+           		   + VtaN5 * N5bar.Z[m].ProjM[m].vt )	\
+	    + 1/2 * gN/cw *(  VeN6 * N6bar.Z[m].ProjM[m].ve	\
+           	  	   + VmuN6 * N6bar.Z[m].ProjM[m].vm	\
+           		   + VtaN6 * N6bar.Z[m].ProjM[m].vt );*)
+
+
+
+(* Goldstone Interaction *)
+(*LNGbare :=	  I *gN*mN1/(2*MW) 	*(	VeN1   * vebar.ProjP.N1 G0	\
+					+	VmuN1  * vmbar.ProjP.N1 G0	\
+					+	VtaN1  * vtbar.ProjP.N1 G0)	\
+		+ I *gN*mN2/(2*MW) 	*(	VeN2   * vebar.ProjP.N2 G0	\
+					+	VmuN2  * vmbar.ProjP.N2 G0	\
+					+	VtaN2  * vtbar.ProjP.N2 G0)	\
+		+ I *gN*mN3/(2*MW) 	*(	VeN3   * vebar.ProjP.N3 G0	\
+					+	VmuN3  * vmbar.ProjP.N3 G0	\
+					+	VtaN3  * vtbar.ProjP.N3 G0)	\
+		+ I *gN*mN1/(Sqrt[2]*MW) *(	VeN1   *  ebar.ProjP.N1 GPbar	\
+					+	VmuN1  * mubar.ProjP.N1 GPbar	\
+					+	VtaN1  * tabar.ProjP.N1 GPbar)	\
+		+ I *gN*mN2/(Sqrt[2]*MW) *(	VeN2   *  ebar.ProjP.N2 GPbar	\
+					+	VmuN2  * mubar.ProjP.N2 GPbar	\
+					+	VtaN2  * tabar.ProjP.N2 GPbar)	\
+		+ I *gN*mN3/(Sqrt[2]*MW) *(	VeN3   *  ebar.ProjP.N3 GPbar	\
+					+	VmuN3  * mubar.ProjP.N3 GPbar	\
+					+	VtaN3  * tabar.ProjP.N3 GPbar);
+LNG := LNGbare + HC[LNGbare];*)
+
+
+(* Higgs Interaction *)
+(*LNHbare := 	- gN*mN1/(2*MW) *( VeN1 * N1bar.ProjM.ve H	\
+				+ VmuN1 * N1bar.ProjM.vm H	\
+				+ VtaN1 * N1bar.ProjM.vt H )	\
+		- gN*mN2/(2*MW) *( VeN2 * N2bar.ProjM.ve H	\
+				+ VmuN2 * N2bar.ProjM.vm H	\
+				+ VtaN2 * N2bar.ProjM.vt H )	\
+		- gN*mN3/(2*MW) *( VeN3 * N3bar.ProjM.ve H	\
+				+ VmuN3 * N3bar.ProjM.vm H	\
+				+ VtaN3 * N3bar.ProjM.vt H );
+LNH := LNHbare + HC[LNHbare];*)
+
+(* Charge Current *)
+(*LNCCbare :=   gN/Sqrt[2] *(  VeN1 * N1bar.W[m].ProjM[m].e	\
+           	 	  + VmuN1 * N1bar.W[m].ProjM[m].mu	\
+			  + VtaN1 * N1bar.W[m].ProjM[m].ta )	\
+	    + gN/Sqrt[2] *(  VeN2 * N2bar.W[m].ProjM[m].e	\
+           	 	  + VmuN2 * N2bar.W[m].ProjM[m].mu	\
+			  + VtaN2 * N2bar.W[m].ProjM[m].ta )	\
+	    + gN/Sqrt[2] *(  VeN3 * N3bar.W[m].ProjM[m].e	\
+           	 	  + VmuN3 * N3bar.W[m].ProjM[m].mu	\
+			  + VtaN3 * N3bar.W[m].ProjM[m].ta )    \
+            + gN/Sqrt[2] *(  VeN4 * N4bar.W[m].ProjM[m].e	\
+           	 	  + VmuN4 * N4bar.W[m].ProjM[m].mu	\
+			  + VtaN4 * N4bar.W[m].ProjM[m].ta )	\
+	    + gN/Sqrt[2] *(  VeN5 * N5bar.W[m].ProjM[m].e	\
+           	 	  + VmuN5 * N5bar.W[m].ProjM[m].mu	\
+			  + VtaN5 * N5bar.W[m].ProjM[m].ta )	\
+	    + gN/Sqrt[2] *(  VeN6 * N6bar.W[m].ProjM[m].e	\
+           	 	  + VmuN6 * N6bar.W[m].ProjM[m].mu	\
+			  + VtaN6 * N6bar.W[m].ProjM[m].ta );*)
